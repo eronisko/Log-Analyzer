@@ -1,4 +1,6 @@
 LogAnalyzer::Application.routes.draw do
+  resources :logs
+
   resources :investigations
 
   # The priority is based upon order of creation:

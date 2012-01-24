@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  investigation_id: 1
+  name: MyString
+  description: MyString
+  data_type: MyString
+  path: MyString
+  time_bias: 1
+
+two:
+  investigation_id: 1
+  name: MyString
+  description: MyString
+  data_type: MyString
+  path: MyString
+  time_bias: 1
