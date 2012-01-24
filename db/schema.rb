@@ -11,13 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120124153236) do
+ActiveRecord::Schema.define(:version => 20120124154324) do
 
   create_table "investigations", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "logs", :force => true do |t|
+    t.integer  "investigation_id"
+    t.string   "name"
+    t.string   "description"
+    t.string   "data_type"
+    t.string   "path"
+    t.integer  "time_bias"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
 end
