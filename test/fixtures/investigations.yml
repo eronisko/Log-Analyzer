@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  description: MyString
-
-two:
-  name: MyString
-  description: MyString
+flower_shop:
+  name: Flower Shop
+  description: An investigation carried out for a flower shop

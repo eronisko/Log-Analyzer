@@ -2,7 +2,7 @@ require 'test_helper'
 
 class InvestigationsControllerTest < ActionController::TestCase
   setup do
-    @investigation = investigations(:one)
+    @investigation = investigations(:flower_shop)
   end
 
   test "should get index" do
