@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class LogTest < ActiveSupport::TestCase
-  fixtures :logs, :investigations
-
   setup do
     @new_log = Log.new(investigation_id: 1,
                        name: 'Database Log',

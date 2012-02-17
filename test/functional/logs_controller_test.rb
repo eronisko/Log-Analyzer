@@ -2,11 +2,12 @@ require 'test_helper'
 
 class LogsControllerTest < ActionController::TestCase
   setup do
-    @log = logs(:one)
+    @investigation = investigations(:flower_shop)
+    @log = logs(:web_server)
   end
 
   test "should get index" do
-    get :index
+    get :index, investigation_id: @investigation.id
     assert_response :success
     assert_not_nil assigns(:logs)
   end

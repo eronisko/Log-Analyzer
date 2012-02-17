@@ -2,7 +2,8 @@ class LogsController < ApplicationController
   # GET /logs
   # GET /logs.json
   def index
-    @logs = Log.all
+    @investigation = Investigation.find(params[:investigation_id])
+    @logs = @investigation.logs.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,6 +25,7 @@ class LogsController < ApplicationController
   # GET /logs/new
   # GET /logs/new.json
   def new
+    @investigation = Investigation.find(params[:investigation_id])
     @log = Log.new
 
     respond_to do |format|
