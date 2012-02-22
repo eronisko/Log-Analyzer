@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  description: MyString
+flower_shop:
+  id: 1
+  name: Flower Shop
+  description: An investigation carried out for a flower shop
 
-two:
-  name: MyString
-  description: MyString
+uob_manufacturing:
+  id: 2
+  name: UoB Manufacturing
+  description: a fictional company that has been hacked
+
+

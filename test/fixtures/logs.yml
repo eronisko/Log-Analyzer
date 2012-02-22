@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+web_server:
   investigation_id: 1
-  name: MyString
-  description: MyString
-  data_type: MyString
-  path: MyString
-  time_bias: 1
+  name: Web Server Log 
+  description: Apache Combined Access log from the web server
+  data_type: plaintext
+  path: /tmp/combined_log
+  time_bias: 25
 
-two:
-  investigation_id: 1
-  name: MyString
-  description: MyString
-  data_type: MyString
-  path: MyString
-  time_bias: 1
+#db_server:
+#  investigation_id: 1
+#  name: Database Log
+#  description: MySQL database server
+#  data_type: plaintext
+#  path: /tmp/db_log
+#  time_bias: 0

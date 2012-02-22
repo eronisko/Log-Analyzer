@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>LogAnalyzer</title>
+  <title>Log Analyzer</title>
   <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
   <%= stylesheet_link_tag 'blueprint/print',  :media => 'print' %>
+  <%= stylesheet_link_tag 'blueprint/plugins/fancy-type/screen', :media => 'screen' %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
-<%= yield %>
-
+<body class="<%= controller.controller_name %>">
+  <div id="banner">
+    <%= @page_title || "Log Analyzer" %>
+  </div>
+  <div id="navigation">
+    <ul>
+      <li><%= link_to 'Home', site_index_path %></li>
+      <li><%= link_to 'Investigations', investigations_path %></li>
+  </div>
+  <div id="main">
+    <%= yield %>
+  </div>
+  <div id="footer"> 
+    <p class="alt">
+      This is a footer
+    </p>
+  </div>
 </body>
 </html>
