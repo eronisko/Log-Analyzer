@@ -1,10 +1,8 @@
 require 'test_helper'
 
 class LogTest < ActiveSupport::TestCase
-  fixtures :logs, :investigations
-
   setup do
-    @new_log = Log.new(investigation_id: 1,
+    @new_log = Log.new(investigation: investigations(:flower_shop),
                        name: 'Database Log',
                        description: 'MySQL database server',
                        data_type: 'plaintext',
@@ -23,7 +21,7 @@ class LogTest < ActiveSupport::TestCase
   test "log names can repeat across different investigations" do
     different_log                   = @new_log 
     different_log.name              = logs(:web_server).name
-    different_log.investigation_id  = 2
+    different_log.investigation     = investigations(:uob_manufacturing)
 
     assert different_log.save
   end

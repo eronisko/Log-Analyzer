@@ -2,7 +2,7 @@ require 'test_helper'
 
 class LogsControllerTest < ActionController::TestCase
   setup do
-    @log = logs(:one)
+    @log = logs(:web_server)
   end
 
   test "should get index" do
@@ -17,8 +17,16 @@ class LogsControllerTest < ActionController::TestCase
   end
 
   test "should create log" do
+    @another_log = Log.new(investigation: investigations(:flower_shop),
+                           name: "yet another log",
+                           description: "taken from a boat",
+                           data_type: "plaintext",
+                           path: "yet/another/path",
+                           time_bias: 0
+                          )
+
     assert_difference('Log.count') do
-      post :create, log: @log.attributes
+      post :create, log: @another_log.attributes
     end
 
     assert_redirected_to log_path(assigns(:log))

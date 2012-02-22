@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 web_server:
-  investigation_id: 1
+  investigation: flower_shop
   name: Web Server Log 
   description: Apache Combined Access log from the web server
   data_type: plaintext
@@ -9,9 +9,3 @@ web_server:
   time_bias: 25
 
 #db_server:
-#  investigation_id: 1
-#  name: Database Log
-#  description: MySQL database server
-#  data_type: plaintext
-#  path: /tmp/db_log
-#  time_bias: 0
