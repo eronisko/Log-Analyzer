@@ -3,4 +3,4 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', @log %> |
-<%= link_to 'Back', logs_path %>
+<%= link_to 'Back', investigation_logs_path(@log.investigation) %>

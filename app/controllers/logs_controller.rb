@@ -1,8 +1,10 @@
 class LogsController < ApplicationController
+  before_filter :get_investigation_from_url, only: [:new, :index]
+
   # GET /logs
   # GET /logs.json
   def index
-    @logs = Log.all
+    @logs = @investigation.logs
 
     respond_to do |format|
       format.html # index.html.erb
@@ -76,8 +78,14 @@ class LogsController < ApplicationController
     @log.destroy
 
     respond_to do |format|
-      format.html { redirect_to logs_url }
+      format.html { redirect_to investigation_logs_url(@log.investigation) }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def get_investigation_from_url
+    @investigation = Investigation.find(params[:investigation_id])
   end
 end
