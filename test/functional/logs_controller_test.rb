@@ -2,22 +2,23 @@ require 'test_helper'
 
 class LogsControllerTest < ActionController::TestCase
   setup do
-    @log = logs(:web_server)
+    @log           = logs(:web_server)
+    @investigation = investigations(:flower_shop)
   end
 
   test "should get index" do
-    get :index
+    get :index, investigation_id: @investigation
     assert_response :success
     assert_not_nil assigns(:logs)
   end
 
   test "should get new" do
-    get :new
+    get :new, investigation_id: @investigation
     assert_response :success
   end
 
   test "should create log" do
-    @another_log = Log.new(investigation: investigations(:flower_shop),
+    @another_log = Log.new(investigation: @investigation,
                            name: "yet another log",
                            description: "taken from a boat",
                            data_type: "plaintext",
@@ -33,7 +34,7 @@ class LogsControllerTest < ActionController::TestCase
   end
 
   test "should show log" do
-    get :show, id: @log
+    get :show, investigation_id: @investigation, id: @log
     assert_response :success
   end
 
@@ -52,6 +53,6 @@ class LogsControllerTest < ActionController::TestCase
       delete :destroy, id: @log
     end
 
-    assert_redirected_to logs_path
+    assert_redirected_to investigation_logs_path(@log.investigation)
   end
 end
