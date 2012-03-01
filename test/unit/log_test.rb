@@ -6,7 +6,7 @@ class LogTest < ActiveSupport::TestCase
                        name: 'Database Log',
                        description: 'MySQL database server',
                        data_type: 'plaintext',
-                       path: '/tmp/db_log',
+                       path: 'test/fixtures/flower_shop_log.log',
                        time_bias: 0
                       )
   end

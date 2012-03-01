@@ -8,9 +8,9 @@ class Log < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :investigation_id
 
 
-  def import_to_db
-    path='/var/tmp/access_combined.log'
-
+  # Imports a file into the DB, extracting the messages line by line
+  # Currently only handling plaintext files
+  def import_to_db(path)
     file_handle = File.open(path, "r")
     file_handle.lines.each do |line|
       message = LogMessage.new(:log_id => id,
