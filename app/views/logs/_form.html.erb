@@ -12,20 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :investigation_id %><br />
-    <%= f.collection_select :investigation_id, Investigation.find(:all), :id, :name %>
-  </div>
-  <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.text_area :description %>
   </div>
   <div class="field">
     <%= f.label :data_type %><br />
-    <%= f.text_field :data_type %>
+    <%= f.select :data_type, Log::VALID_DATA_TYPES %>
   </div>
   <div class="field">
     <%= f.label :file %><br />
