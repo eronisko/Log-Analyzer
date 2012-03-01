@@ -2,12 +2,12 @@
 
 <table>
   <tr>
-    <th>Investigation</th>
     <th>Name</th>
     <th>Description</th>
     <th>Data type</th>
     <th>File</th>
     <th>Time bias</th>
+    <th>Log messages</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,12 +15,12 @@
 
 <% @logs.each do |log| %>
   <tr>
-    <td><%= log.investigation_id %></td>
     <td><%= log.name %></td>
     <td><%= log.description %></td>
     <td><%= log.data_type %></td>
     <td><%= log.file %></td>
     <td><%= log.time_bias %></td>
+    <td><%= log.log_messages.count %></td>
     <td><%= link_to 'Show', log %></td>
     <td><%= link_to 'Edit', edit_log_path(log) %></td>
     <td><%= link_to 'Destroy', log, confirm: 'Are you sure?', method: :delete %></td>
