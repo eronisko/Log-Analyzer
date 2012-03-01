@@ -7,8 +7,6 @@ class Log < ActiveRecord::Base
   validates :time_bias, :numericality => true
   validates_uniqueness_of :name, :scope => :investigation_id
 
-  after_create import_to_db(params[:log][:uploaded_file])
-
   def uploaded_file=(uploaded_file)
     self.file=uploaded_file.original_filename
   end
