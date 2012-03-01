@@ -1,5 +1,5 @@
 class LogsController < ApplicationController
-  before_filter :get_investigation_from_url, only: [:new, :index]
+  before_filter :get_investigation_from_url, only: [:new, :create, :index]
 
   # GET /logs
   # GET /logs.json
@@ -43,15 +43,16 @@ class LogsController < ApplicationController
   # POST /logs.json
   def create
     @log = Log.new(params[:log])
-    #@uploaded_file = params[:log][:uploaded_file]
+    @log.investigation = @investigation
 
     respond_to do |format|
       if @log.save
       	@log.import_to_db(params[:log][:uploaded_file])
+
         format.html { redirect_to @log, notice: 'Log was successfully created.' }
         format.json { render json: @log, status: :created, location: @log }
       else
-        format.html { render action: "new" }
+        format.html { render action: "new", investigation: @investigation}
         format.json { render json: @log.errors, status: :unprocessable_entity }
       end
     end

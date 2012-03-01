@@ -18,16 +18,22 @@ class LogsControllerTest < ActionController::TestCase
   end
 
   test "should create log" do
+    @upload_file   = fixture_file_upload('files/flower_shop_log.log',
+                                         'application/octet-stream')
+    @upload_file.inspect
     @another_log = Log.new(investigation: @investigation,
                            name: "yet another log",
                            description: "taken from a boat",
                            data_type: "plaintext",
-                           file: "yet/another/path",
+                           uploaded_file: @upload_file,
                            time_bias: 0
                           )
 
     assert_difference('Log.count') do
-      post :create, log: @another_log.attributes
+      puts @upload_file.inspect
+      post :create, log: @another_log.attributes,
+                    investigation_id: @investigation
+
     end
 
     assert_redirected_to log_path(assigns(:log))
