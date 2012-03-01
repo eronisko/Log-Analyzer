@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120129204435) do
+ActiveRecord::Schema.define(:version => 20120301181733) do
 
   create_table "investigations", :force => true do |t|
     t.string   "name"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20120129204435) do
     t.string   "name"
     t.string   "description"
     t.string   "data_type"
-    t.string   "path"
+    t.string   "file"
     t.integer  "time_bias"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false

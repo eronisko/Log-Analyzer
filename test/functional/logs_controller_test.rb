@@ -22,7 +22,7 @@ class LogsControllerTest < ActionController::TestCase
                            name: "yet another log",
                            description: "taken from a boat",
                            data_type: "plaintext",
-                           path: "yet/another/path",
+                           file: "yet/another/path",
                            time_bias: 0
                           )
 

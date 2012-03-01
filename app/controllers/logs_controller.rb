@@ -43,9 +43,13 @@ class LogsController < ApplicationController
   # POST /logs.json
   def create
     @log = Log.new(params[:log])
+    #@uploaded_file = params[:log][:uploaded_file]
 
     respond_to do |format|
       if @log.save
+      	logger.debug @log.inspect
+
+      	@log.import_to_db(params[:log][:uploaded_file])
         format.html { redirect_to @log, notice: 'Log was successfully created.' }
         format.json { render json: @log, status: :created, location: @log }
       else

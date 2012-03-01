@@ -6,7 +6,7 @@ class LogTest < ActiveSupport::TestCase
                        name: 'Database Log',
                        description: 'MySQL database server',
                        data_type: 'plaintext',
-                       path: 'test/fixtures/flower_shop_log.log',
+                       file: 'test/fixtures/flower_shop_log.log',
                        time_bias: 0
                       )
   end
@@ -36,8 +36,8 @@ class LogTest < ActiveSupport::TestCase
     assert !@new_log.save
   end
   
-  test "has to have a path" do
-    @new_log.path = nil
+  test "has to have a file uploaded" do
+    @new_log.file = nil
     assert !@new_log.save
   end
   

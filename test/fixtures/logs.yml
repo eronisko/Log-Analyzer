@@ -5,7 +5,7 @@ web_server:
   name: Web Server Log 
   description: Apache Combined Access log from the web server
   data_type: plaintext
-  path: /tmp/combined_log
+  file: test/fixtures/flower_shop_log.log
   time_bias: 25
 
 #db_server:
