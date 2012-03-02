@@ -3,4 +3,8 @@ class LogMessage < ActiveRecord::Base
 
   validates(:log, presence: true)
   validates_associated :log
+
+  def ignored?
+    ignored
+  end
 end
