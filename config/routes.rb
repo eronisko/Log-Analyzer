@@ -1,5 +1,7 @@
 LogAnalyzer::Application.routes.draw do
 
+  resources :elimination_lists
+
   resources :investigations, shallow: true do
     resources :logs, except: 'index'
   end
