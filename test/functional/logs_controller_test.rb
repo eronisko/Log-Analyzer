@@ -6,12 +6,6 @@ class LogsControllerTest < ActionController::TestCase
     @investigation = investigations(:flower_shop)
   end
 
-  test "should get index" do
-    get :index, investigation_id: @investigation
-    assert_response :success
-    assert_not_nil assigns(:logs)
-  end
-
   test "should get new" do
     get :new, investigation_id: @investigation
     assert_response :success
@@ -59,6 +53,6 @@ class LogsControllerTest < ActionController::TestCase
       delete :destroy, id: @log
     end
 
-    assert_redirected_to investigation_logs_path(@log.investigation)
+    assert_redirected_to investigation_path(@log.investigation)
   end
 end

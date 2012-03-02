@@ -1,17 +1,6 @@
 class LogsController < ApplicationController
-  before_filter :get_investigation_from_url, only: [:new, :create, :index]
-
-  # GET /logs
-  # GET /logs.json
-  def index
-    @logs = @investigation.logs
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @logs }
-    end
-  end
-
+  before_filter :get_investigation_from_url, only: [:new, :create]
+  
   # GET /logs/1
   # GET /logs/1.json
   def show
@@ -81,7 +70,7 @@ class LogsController < ApplicationController
     @log.destroy
 
     respond_to do |format|
-      format.html { redirect_to investigation_logs_url(@log.investigation) }
+      format.html { redirect_to investigation_url(@log.investigation) }
       format.json { head :no_content }
     end
   end
