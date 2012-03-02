@@ -48,9 +48,14 @@ class LogsControllerTest < ActionController::TestCase
     assert_redirected_to log_path(assigns(:log))
   end
 
-  test "should destroy log" do
+  test "should destroy log and associated messages" do
     assert_difference('Log.count', -1) do
-      delete :destroy, id: @log
+      assert @log.log_messages.count > 0, "There are no messages for @log." +
+                                          " That makes the test pointless"
+
+      assert_difference('LogMessage.count', -1 * (@log.log_messages.count)) do
+        delete :destroy, id: @log
+      end
     end
 
     assert_redirected_to investigation_path(@log.investigation)
