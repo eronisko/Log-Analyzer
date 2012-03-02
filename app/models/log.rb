@@ -1,11 +1,11 @@
 class Log < ActiveRecord::Base
   belongs_to :investigation
-  has_many :log_messages
+  has_many :log_messages, dependent: :destroy
 
   validates_associated :investigation
   validates :name, :data_type, :file, :time_bias, presence: true
-  validates :time_bias, :numericality => true
-  validates_uniqueness_of :name, :scope => :investigation_id
+  validates :time_bias, numericality: true
+  validates_uniqueness_of :name, scope: :investigation_id
 
   # The data types currently accepted by the application
   VALID_DATA_TYPES = ['plaintext']
