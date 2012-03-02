@@ -18,21 +18,21 @@ class LogsControllerTest < ActionController::TestCase
   end
 
   test "should create log" do
-    @upload_file   = fixture_file_upload('files/flower_shop_log.log',
+    upload_file   = fixture_file_upload('files/flower_shop_log.log',
                                          'application/octet-stream')
-    @upload_file.inspect
     @another_log = Log.new(investigation: @investigation,
                            name: "yet another log",
                            description: "taken from a boat",
                            data_type: "plaintext",
-                           uploaded_file: @upload_file,
-                           time_bias: 0
+                           time_bias: 0,
+                           file: 'my_log'
                           )
 
     assert_difference('Log.count') do
-      puts @upload_file.inspect
-      post :create, log: @another_log.attributes,
-                    investigation_id: @investigation
+      log_params = @another_log.attributes
+      log_params["uploaded_file"] = upload_file
+      post :create, log: log_params,
+                    investigation_id: @another_log.investigation_id
 
     end
 
