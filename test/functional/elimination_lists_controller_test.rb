@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EliminationListsControllerTest < ActionController::TestCase
   setup do
-    @elimination_list = elimination_lists(:one)
+    @elimination_list = elimination_lists(:apache_200_300)
   end
 
   test "should get index" do

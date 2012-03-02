@@ -1,10 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  description: MyString
-  pattern_list: MyString
-
+apache_200_300:
+  name: Unimportant Apache Messages
+  description: Messages returning status 200 or 30x
+  pattern_list: |
+    HTTP/1.1" 200
+    HTTP/1.1" 30
 two:
   name: MyString
   description: MyString
