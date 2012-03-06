@@ -24,21 +24,12 @@ class IgnoreListTest < ActiveSupport::TestCase
     assert !@new_list.save
   end
 
-  test "apply_to_log should set messages to ignored" do
-  #  @log = logs(:web_server)
-  #  @pattern_list = ignore_lists(:apache_200_300)
-
-  #  @pattern_list.apply_to_log
-  end
-
-  test "filter_log_message should set blacklisted messages to ignored" do
-    @uninteresting_message = log_messages(:a_200_message)
+  test "filter_log should set uninteresting message to ignored" do
+    @log = logs(:web_server)
     @pattern_list = ignore_lists(:apache_200_300)
-
-    assert !@uninteresting_message.ignored?
-    @pattern_list.filter_log_message(@uninteresting_message)
-    puts @uninteresting_message.inspect
-    puts @uninteresting_message.raw_message
-    assert @uninteresting_message.ignored?, "Uninteresting message not ignored"
+    
+    assert_difference ('@log.log_messages.ignored.count') do
+      @pattern_list.filter_log(@log)
+    end
   end
 end
