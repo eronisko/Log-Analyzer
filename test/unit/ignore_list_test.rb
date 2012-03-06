@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class EliminationListTest < ActiveSupport::TestCase
+class IgnoreListTest < ActiveSupport::TestCase
   setup do
-    @new_list = EliminationList.new(name: "Apache 200 messages",
+    @new_list = IgnoreList.new(name: "Apache 200 messages",
                                     description: "a description",
                                     pattern_list: "my pattern"
                                    )
@@ -15,7 +15,7 @@ class EliminationListTest < ActiveSupport::TestCase
 
   test "should have a unique name" do
     same_name_list      = @new_list
-    same_name_list.name = elimination_lists(:apache_200_300).name
+    same_name_list.name = ignore_lists(:apache_200_300).name
     assert !same_name_list.save, "Successfully saved a duplicate name"
   end
 
@@ -26,14 +26,14 @@ class EliminationListTest < ActiveSupport::TestCase
 
   test "apply_to_log should set messages to ignored" do
   #  @log = logs(:web_server)
-  #  @pattern_list = elimination_lists(:apache_200_300)
+  #  @pattern_list = ignore_lists(:apache_200_300)
 
   #  @pattern_list.apply_to_log
   end
 
   test "filter_log_message should set blacklisted messages to ignored" do
     @uninteresting_message = log_messages(:a_200_message)
-    @pattern_list = elimination_lists(:apache_200_300)
+    @pattern_list = ignore_lists(:apache_200_300)
 
     assert !@uninteresting_message.ignored?
     @pattern_list.filter_log_message(@uninteresting_message)
