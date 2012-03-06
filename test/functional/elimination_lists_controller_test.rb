@@ -17,8 +17,10 @@ class EliminationListsControllerTest < ActionController::TestCase
   end
 
   test "should create elimination_list" do
+    @another_list = @elimination_list
+    @another_list.name = "Something unique"
     assert_difference('EliminationList.count') do
-      post :create, elimination_list: @elimination_list.attributes
+      post :create, elimination_list: @another_list.attributes
     end
 
     assert_redirected_to elimination_list_path(assigns(:elimination_list))

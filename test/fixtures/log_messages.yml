@@ -2,10 +2,10 @@
 
 a_404_message:
   log: web_server 
-  raw_message: i10.32.1.51 - - [10/Jan/2012:22:49:41] "GET /flower_store/product.screen?product_id=FI-FW-02 HTTP/1.1" 404 10901 "http://mystore.splunk.com/flower_store/category.screen?category_id=GIFTS&JSESSIONID=SD5SL10FF8ADFF3" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.0.10) Gecko/20070223 CentOS/1.5.0.10-0.1.el4.centos Firefox/1.5.0.10" 432 4013 
+  raw_message: 'i10.32.1.51 - - [10/Jan/2012:22:49:41] "GET /flower_store/product.screen?product_id=FI-FW-02 HTTP/1.1" 404 10901 "http://mystore.splunk.com/flower_store/category.screen?category_id=GIFTS&JSESSIONID=SD5SL10FF8ADFF3" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.0.10) Gecko/20070223 CentOS/1.5.0.10-0.1.el4.centos Firefox/1.5.0.10" 432 4013 '
   ignored: false
 
 a_200_message:
   log: web_server
-  raw_message: 192.168.11.33 - - [10/Jan/2012:23:58:10] "GET /flower_store/enter_order_information.screen HTTP/1.1" 200 12919 "http://mystore.splunk.com/flower_store/cart.do?action=purchase&itemId=EST-6&JSESSIONID=SD5SL10FF8ADFF3" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.0.10) Gecko/20070223 CentOS/1.5.0.10-0.1.el4.centos Firefox/1.5.0.10" 2915 2857
+  raw_message: '192.168.11.33 - - [10/Jan/2012:23:58:10] "GET /flower_store/enter_order_information.screen HTTP/1.1" 200 12919 "http://mystore.splunk.com/flower_store/cart.do?action=purchase&itemId=EST-6&JSESSIONID=SD5SL10FF8ADFF3" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.0.10) Gecko/20070223 CentOS/1.5.0.10-0.1.el4.centos Firefox/1.5.0.10" 2915 2857'
   ignored: false

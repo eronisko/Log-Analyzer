@@ -37,6 +37,8 @@ class EliminationListTest < ActiveSupport::TestCase
 
     assert !@uninteresting_message.ignored?
     @pattern_list.filter_log_message(@uninteresting_message)
+    puts @uninteresting_message.inspect
+    puts @uninteresting_message.raw_message
     assert @uninteresting_message.ignored?, "Uninteresting message not ignored"
   end
 end
