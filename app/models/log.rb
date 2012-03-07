@@ -14,6 +14,9 @@ class Log < ActiveRecord::Base
     self.file=uploaded_file.original_filename
   end
 
+  def ignore_list
+  end
+
   # Currently only handling plaintext files
   def import_to_db(uploaded_file)
     file_handle = uploaded_file.read

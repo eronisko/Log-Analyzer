@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Investigation:</b>
-  <%= @log.investigation_id %>
-</p>
-
-<p>
   <b>Name:</b>
   <%= @log.name %>
 </p>
@@ -30,6 +25,12 @@
   <%= @log.time_bias %>
 </p>
 
+<div id="ignore_list_selector">
+  <% form_for @log do |f| %>
+    <%= f.select(g','ignore_list', IgnoreList.all.collect {|i| [ i.name, i.id ] }) %>
+  <% end %>
+</div>
+
 
 <%= link_to 'Edit', edit_log_path(@log) %> |
-<%= link_to 'Back', investigation_logs_path(@log.investigation) %>
+<%= link_to 'Back', @log.investigation %>
