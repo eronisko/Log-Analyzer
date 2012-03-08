@@ -1,0 +1,29 @@
+<h1>Listing elimination_lists</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Created</th>
+    <th>Last Modified</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @elimination_lists.each do |elimination_list| %>
+  <tr>
+    <td><%= elimination_list.name %></td>
+    <td><%= elimination_list.description %></td>
+    <td><%= elimination_list.created_at %></td>
+    <td><%= time_ago_in_words(elimination_list.updated_at) %> ago</td>
+    <td><%= link_to 'Show', elimination_list %></td>
+    <td><%= link_to 'Edit', edit_elimination_list_path(elimination_list) %></td>
+    <td><%= link_to 'Destroy', elimination_list, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Elimination list', new_elimination_list_path %>

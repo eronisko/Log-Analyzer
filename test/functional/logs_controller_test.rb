@@ -13,20 +13,34 @@ class LogsControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
-    get :new
+    get :new, investigation_id: @investigation
     assert_response :success
   end
 
   test "should create log" do
+    upload_file   = fixture_file_upload('files/flower_shop_log.log',
+                                         'application/octet-stream')
+    @another_log = Log.new(investigation: @investigation,
+                           name: "yet another log",
+                           description: "taken from a boat",
+                           data_type: "plaintext",
+                           time_bias: 0,
+                           file: 'my_log'
+                          )
+
     assert_difference('Log.count') do
-      post :create, log: @log.attributes
+      log_params = @another_log.attributes
+      log_params["uploaded_file"] = upload_file
+      post :create, log: log_params,
+                    investigation_id: @another_log.investigation_id
+
     end
 
     assert_redirected_to log_path(assigns(:log))
   end
 
   test "should show log" do
-    get :show, id: @log
+    get :show, investigation_id: @investigation, id: @log
     assert_response :success
   end
 
@@ -40,11 +54,16 @@ class LogsControllerTest < ActionController::TestCase
     assert_redirected_to log_path(assigns(:log))
   end
 
-  test "should destroy log" do
+  test "should destroy log and associated messages" do
     assert_difference('Log.count', -1) do
-      delete :destroy, id: @log
+      assert @log.log_messages.count > 0, "There are no messages for @log." +
+                                          " That makes the test pointless"
+
+      assert_difference('LogMessage.count', -1 * (@log.log_messages.count)) do
+        delete :destroy, id: @log
+      end
     end
 
-    assert_redirected_to logs_path
+    assert_redirected_to investigation_path(@log.investigation)
   end
 end

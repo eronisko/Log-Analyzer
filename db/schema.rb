@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120124154324) do
+ActiveRecord::Schema.define(:version => 20120302170915) do
+
+  create_table "elimination_lists", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "pattern_list"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "investigations", :force => true do |t|
     t.string   "name"
@@ -20,12 +28,20 @@ ActiveRecord::Schema.define(:version => 20120124154324) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "log_messages", :force => true do |t|
+    t.integer  "log_id"
+    t.string   "raw_message"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "ignored",     :default => false
+  end
+
   create_table "logs", :force => true do |t|
     t.integer  "investigation_id"
     t.string   "name"
     t.string   "description"
     t.string   "data_type"
-    t.string   "path"
+    t.string   "file"
     t.integer  "time_bias"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false

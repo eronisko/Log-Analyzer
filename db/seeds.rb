@@ -8,6 +8,6 @@
 
 Investigation.delete_all
 
-Investigation.create(name: 'Flower Shop',
+Investigation.create(name: 'Clothes Shop',
                      description: 'An Investigation of a failing website'
                     )

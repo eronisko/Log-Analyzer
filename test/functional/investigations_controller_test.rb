@@ -17,8 +17,12 @@ class InvestigationsControllerTest < ActionController::TestCase
   end
 
   test "should create investigation" do
+    @another_investigation = Investigation.new(
+        name:        "My new investigation",
+        description: "my new description")
+
     assert_difference('Investigation.count') do
-      post :create, investigation: @investigation.attributes
+      post :create, investigation: @another_investigation.attributes
     end
 
     assert_redirected_to investigation_path(assigns(:investigation))
@@ -39,9 +43,11 @@ class InvestigationsControllerTest < ActionController::TestCase
     assert_redirected_to investigation_path(assigns(:investigation))
   end
 
-  test "should destroy investigation" do
+  test "should destroy investigation and associated logs" do
     assert_difference('Investigation.count', -1) do
-      delete :destroy, id: @investigation
+      assert_difference('Log.count', -1 * (@investigation.logs.count)) do
+        delete :destroy, id: @investigation
+      end
     end
 
     assert_redirected_to investigations_path

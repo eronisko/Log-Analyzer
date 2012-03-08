@@ -2,11 +2,11 @@ require 'test_helper'
 
 class LogTest < ActiveSupport::TestCase
   setup do
-    @new_log = Log.new(investigation_id: 1,
+    @new_log = Log.new(investigation: investigations(:flower_shop),
                        name: 'Database Log',
                        description: 'MySQL database server',
                        data_type: 'plaintext',
-                       path: '/tmp/db_log',
+                       file: 'test/fixtures/flower_shop_log.log',
                        time_bias: 0
                       )
   end
@@ -21,7 +21,7 @@ class LogTest < ActiveSupport::TestCase
   test "log names can repeat across different investigations" do
     different_log                   = @new_log 
     different_log.name              = logs(:web_server).name
-    different_log.investigation_id  = 2
+    different_log.investigation     = investigations(:uob_manufacturing)
 
     assert different_log.save
   end
@@ -36,8 +36,8 @@ class LogTest < ActiveSupport::TestCase
     assert !@new_log.save
   end
   
-  test "has to have a path" do
-    @new_log.path = nil
+  test "has to have a file uploaded" do
+    @new_log.file = nil
     assert !@new_log.save
   end
   

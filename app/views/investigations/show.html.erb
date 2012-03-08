@@ -11,7 +11,23 @@
   <b>Description:</b>
   <%= @investigation.description %>
 </p>
+<%= link_to 'Edit description', edit_investigation_path(@investigation) %>
+<hr class="space">
+<h5>Listing logs for investigation <%= @investigation.name %></h5>
 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Data type</th>
+    <th>File</th>
+    <th>Time bias</th>
+    <th>Log messages</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<%= render @investigation.logs || "There are no logs, sir" %> 
+</table>
 
-<%= link_to 'Edit', edit_investigation_path(@investigation) %> |
-<%= link_to 'Back', investigations_path %>
+<%= link_to 'Add a new log', new_investigation_log_path(@investigation) %>
