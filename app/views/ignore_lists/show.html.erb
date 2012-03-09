@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @ignore_list.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @ignore_list.description %>
+</p>
+
+<p>
+  <b>Pattern list:</b>
+  <%= @ignore_list.pattern_list %>
+</p>
+
+
+<%= link_to 'Edit', edit_ignore_list_path(@ignore_list) %> |
+<%= link_to 'Back', ignore_lists_path %>

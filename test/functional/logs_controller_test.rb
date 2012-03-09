@@ -36,7 +36,10 @@ class LogsControllerTest < ActionController::TestCase
   test "should show log" do
     get :show, investigation_id: @investigation, id: @log
     assert_response :success
+
+    assert_select "div#ignore_list_selector"
   end
+
 
   test "should get edit" do
     get :edit, id: @log
@@ -59,5 +62,13 @@ class LogsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to investigation_path(@log.investigation)
+  end
+
+  test "should apply an ignore list" do
+    @pattern_list = ignore_lists(:apache_200_300)
+
+    assert_difference ('@log.log_messages.ignored.count') do
+      put :filter, id: @log, ignore_list: @pattern_list.attributes
+    end
   end
 end

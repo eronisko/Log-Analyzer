@@ -11,9 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120302170915) do
+ActiveRecord::Schema.define(:version => 20120306183526) do
 
-  create_table "elimination_lists", :force => true do |t|
+  create_table "ignore_lists", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.string   "pattern_list"

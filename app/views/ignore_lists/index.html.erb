@@ -1,0 +1,29 @@
+<h1>Listing ignore_lists</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Created</th>
+    <th>Last Modified</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ignore_lists.each do |ignore_list| %>
+  <tr>
+    <td><%= ignore_list.name %></td>
+    <td><%= ignore_list.description %></td>
+    <td><%= ignore_list.created_at %></td>
+    <td><%= time_ago_in_words(ignore_list.updated_at) %> ago</td>
+    <td><%= link_to 'Show', ignore_list %></td>
+    <td><%= link_to 'Edit', edit_ignore_list_path(ignore_list) %></td>
+    <td><%= link_to 'Destroy', ignore_list, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Ignore list', new_ignore_list_path %>
