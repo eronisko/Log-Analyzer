@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doCTYPE html>
 <html>
 <head>
   <title>Log Analyzer</title>
@@ -9,16 +9,18 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= controller.controller_name %>">
-  <div id="banner">
-    <%= @page_title || "Log Analyzer" %>
-  </div>
-  <div id="navigation">
-    <ul>
-      <li><%= link_to 'Home', root_path %></li>
-      <li><%= link_to 'Investigations', investigations_path %></li>
-      <li><%= link_to 'Ignore Lists', ignore_lists_path %></li>
-    </ul>
+<body class="<%= controller.controller_name %> container">
+  <div id="header">
+    <div id="logo">
+      <span class="alt">LOG ANALYZER</span>
+    </div>
+    <div id="navigation">
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Investigations', investigations_path %></li>
+        <li><%= link_to 'Ignore Lists', ignore_lists_path %></li>
+      </ul>
+    </div>
   </div>
   <div id="main">
     <%= yield %>
