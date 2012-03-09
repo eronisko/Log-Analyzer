@@ -68,7 +68,7 @@ class LogsControllerTest < ActionController::TestCase
     @pattern_list = ignore_lists(:apache_200_300)
 
     assert_difference ('@log.log_messages.ignored.count') do
-      put :filter, id: @log, ignore_list: @pattern_list
+      put :filter, id: @log, ignore_list: @pattern_list.attributes
     end
   end
 end

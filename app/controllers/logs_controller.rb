@@ -77,7 +77,7 @@ class LogsController < ApplicationController
 
   def filter
     @log = Log.find(params[:id])
-    @ignore_list = IgnoreList.find(params[:ignore_list])
+    @ignore_list = IgnoreList.find(params[:ignore_list][:id])
 
     @ignore_list.filter_log(@log)
 
