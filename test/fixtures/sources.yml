@@ -1,15 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  description: MyString
-  timestamp_definition: MyString
-  field_1_name: MyString
-  field_1_definition: MyString
-
-two:
-  name: MyString
-  description: MyString
-  timestamp_definition: MyString
-  field_1_name: MyString
-  field_1_definition: MyString
+apache_combined_errors:
+  name: Apache Combined Access Error Messages
+  description: extracting error messages
+  timestamp_definition: +.
+  field_1_name: errno
+  field_1_definition: \w+
