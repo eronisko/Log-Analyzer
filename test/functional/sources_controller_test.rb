@@ -40,17 +40,17 @@ class SourcesControllerTest < ActionController::TestCase
     assert_redirected_to source_path(assigns(:source))
   end
 
-  #test "should destroy source and associated message patterns" do
-  #  assert_difference('Source.count', -1) do
-  #    assert @source.extraction_patterns.count > 0,
-  #                                "There are no patterns for @sources. " +
-  #                                "That makes this test pointless..."
-  #    
-  #    assert_difference('MessagePattern.count', -1 * (@source.message_patterns.count)) do
-  #      delete :destroy, id: @source
-  #    end
-  #  end
+  test "should destroy source and associated message patterns" do
+    assert_difference('Source.count', -1) do
+      assert @source.extraction_patterns.count > 0,
+                                  "There are no patterns for @sources. " +
+                                  "That makes this test pointless..."
+      
+      assert_difference('MessagePattern.count', -1 * (@source.message_patterns.count)) do
+        delete :destroy, id: @source
+      end
+    end
 
-  #  assert_redirected_to sources_path
-  #end
+    assert_redirected_to sources_path
+  end
 end
