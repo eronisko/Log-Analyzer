@@ -6,3 +6,4 @@ apache_combined_errors:
   timestamp_definition: +.
   field_1_name: errno
   field_1_definition: \w+
+

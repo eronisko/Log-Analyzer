@@ -1,5 +1,7 @@
 LogAnalyzer::Application.routes.draw do
 
+  resources :message_patterns
+
   resources :sources
 
   resources :ignore_lists

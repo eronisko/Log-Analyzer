@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Source:</b>
+  <%= @message_pattern.source_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @message_pattern.name %>
+</p>
+
+<p>
+  <b>Pattern:</b>
+  <%= @message_pattern.pattern %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @message_pattern.category %>
+</p>
+
+
+<%= link_to 'Edit', edit_message_pattern_path(@message_pattern) %> |
+<%= link_to 'Back', message_patterns_path %>

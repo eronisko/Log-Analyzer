@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120313141210) do
+ActiveRecord::Schema.define(:version => 20120313150519) do
 
   create_table "ignore_lists", :force => true do |t|
     t.string   "name"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(:version => 20120313141210) do
     t.integer  "time_bias"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "message_patterns", :force => true do |t|
+    t.integer  "source_id"
+    t.string   "name"
+    t.string   "pattern"
+    t.string   "category"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "sources", :force => true do |t|
