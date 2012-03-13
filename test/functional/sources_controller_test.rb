@@ -42,7 +42,7 @@ class SourcesControllerTest < ActionController::TestCase
 
   test "should destroy source and associated message patterns" do
     assert_difference('Source.count', -1) do
-      assert @source.extraction_patterns.count > 0,
+      assert @source.message_patterns.count > 0,
                                   "There are no patterns for @sources. " +
                                   "That makes this test pointless..."
       
