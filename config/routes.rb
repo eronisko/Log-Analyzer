@@ -1,5 +1,7 @@
 LogAnalyzer::Application.routes.draw do
 
+  resources :sources
+
   resources :ignore_lists
 
   resources :investigations, shallow: true do

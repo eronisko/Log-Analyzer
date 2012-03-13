@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyString
+  timestamp_definition: MyString
+  field_1_name: MyString
+  field_1_definition: MyString
+
+two:
+  name: MyString
+  description: MyString
+  timestamp_definition: MyString
+  field_1_name: MyString
+  field_1_definition: MyString

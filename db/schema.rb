@@ -11,7 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120306183526) do
+ActiveRecord::Schema.define(:version => 20120313141210) do
+
+  create_table "extraction_definitions", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "timestamp_definition"
+    t.string   "field_1_name"
+    t.string   "field_1_definition"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  create_table "extraction_patterns", :force => true do |t|
+    t.integer  "extraction_definition_id"
+    t.string   "name"
+    t.string   "pattern"
+    t.string   "category"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
 
   create_table "ignore_lists", :force => true do |t|
     t.string   "name"
@@ -45,6 +64,16 @@ ActiveRecord::Schema.define(:version => 20120306183526) do
     t.integer  "time_bias"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "sources", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "timestamp_definition"
+    t.string   "field_1_name"
+    t.string   "field_1_definition"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
 end
