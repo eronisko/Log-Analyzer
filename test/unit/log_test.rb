@@ -12,10 +12,8 @@ class LogTest < ActiveSupport::TestCase
   end
 
   test "log names have to be unique within an investigation" do
-    same_log      = @new_log
-    same_log.name = logs(:web_server).name
-    
-    assert !same_log.save, 'Successfully saved a duplicate log'
+    @new_log.name = logs(:web_server).name
+    assert !@new_log.save, 'Successfully saved a duplicate log'
   end
 
   test "log names can repeat across different investigations" do
