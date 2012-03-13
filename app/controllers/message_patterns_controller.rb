@@ -15,6 +15,7 @@ class MessagePatternsController < ApplicationController
   # GET /message_patterns/1.json
   def show
     @message_pattern = MessagePattern.find(params[:id])
+    @source = @message_pattern.source;
 
     respond_to do |format|
       format.html # show.html.erb
