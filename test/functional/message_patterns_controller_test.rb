@@ -3,22 +3,25 @@ require 'test_helper'
 class MessagePatternsControllerTest < ActionController::TestCase
   setup do
     @message_pattern = message_patterns(:client_error)
+    @source = sources(:apache_combined_errors)
   end
 
   test "should get index" do
-    get :index
+    get :index, source_id: @source
     assert_response :success
     assert_not_nil assigns(:message_patterns)
   end
 
   test "should get new" do
-    get :new
+    get :new, source_id: @source
     assert_response :success
   end
 
   test "should create message_pattern" do
+    @message_pattern.name = "a unique name"
     assert_difference('MessagePattern.count') do
-      post :create, message_pattern: @message_pattern.attributes
+      post :create, message_pattern: @message_pattern.attributes,
+                    source_id: @source
     end
 
     assert_redirected_to message_pattern_path(assigns(:message_pattern))
@@ -26,6 +29,7 @@ class MessagePatternsControllerTest < ActionController::TestCase
 
   test "should show message_pattern" do
     get :show, id: @message_pattern
+    puts @message_pattern.source
     assert_response :success
   end
 
@@ -44,6 +48,6 @@ class MessagePatternsControllerTest < ActionController::TestCase
       delete :destroy, id: @message_pattern
     end
 
-    assert_redirected_to message_patterns_path
+    assert_redirected_to source_message_patterns_path(assigns(:source))
   end
 end

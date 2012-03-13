@@ -1,4 +1,5 @@
 class MessagePatternsController < ApplicationController
+  before_filter :get_source_from_url, only: [:index, :new, :create, :delete]
   # GET /message_patterns
   # GET /message_patterns.json
   def index
@@ -41,13 +42,14 @@ class MessagePatternsController < ApplicationController
   # POST /message_patterns.json
   def create
     @message_pattern = MessagePattern.new(params[:message_pattern])
+    @message_pattern.source = @source
 
     respond_to do |format|
       if @message_pattern.save
         format.html { redirect_to @message_pattern, notice: 'Message pattern was successfully created.' }
         format.json { render json: @message_pattern, status: :created, location: @message_pattern }
       else
-        format.html { render action: "new" }
+        format.html { render action: "new", source: @source }
         format.json { render json: @message_pattern.errors, status: :unprocessable_entity }
       end
     end
@@ -76,8 +78,14 @@ class MessagePatternsController < ApplicationController
     @message_pattern.destroy
 
     respond_to do |format|
-      format.html { redirect_to message_patterns_url }
+      format.html { redirect_to source_message_patterns_url(@source) }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def get_source_from_url
+    @source = Source.find(params[:source_id])
   end
 end

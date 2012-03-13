@@ -1,4 +1,4 @@
-<%= form_for(@message_pattern) do |f| %>
+<%= form_for [@source, @message_pattern] do |f| %>
   <% if @message_pattern.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@message_pattern.errors.count, "error") %> prohibited this message_pattern from being saved:</h2>

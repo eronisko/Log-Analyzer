@@ -1,13 +1,15 @@
 LogAnalyzer::Application.routes.draw do
 
-  resources :message_patterns
 
-  resources :sources
+  resources :sources, shallow: true do
+    resources :message_patterns
+  end
+
 
   resources :ignore_lists
 
   resources :investigations, shallow: true do
-    resources :logs, except: 'index' do
+    resources :logs, except: :index do
       member do
         put 'filter'
       end
