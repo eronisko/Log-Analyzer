@@ -11,17 +11,32 @@
  *= require_self
  *= require_tree .
 */
+$footer_height: 50px;
+
+* {margin:0; padding:0;}
+html, body, #wrap { height:100%; }
 body {
   background: url('/assets/paper-tile.jpg');
+
+  #wrap {
+    height: auto;
+    min-height: 100%;
+  }
 }
+
 h1,h2,h3 {
   text-shadow: 1px 1px 0 white;
   font-weight: bold;
   color: #333;
   margin-left: 0.5em;
 }
+
+#main {
+  padding-bottom: $footer_height+20;
+}
+
 #header {
-  margin-top:10px;
+  padding-top:10px;
   margin-bottom: 20px;
   #logo {
     padding: 0px 0.5em;
@@ -78,14 +93,11 @@ h1,h2,h3 {
 }
 
 
-#main {
-}
-
 #footer {
-  position:absolute;
-  width: 100%;
+  position: relative;
+  height: $footer_height;
+  margin-top: -$footer_height;
+  clear:both;
   text-align: center;
-  bottom: 0;
-  left: 0;
 }
 
