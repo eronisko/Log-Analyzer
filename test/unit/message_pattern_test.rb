@@ -11,6 +11,11 @@ class MessagePatternTest < ActiveSupport::TestCase
     @new_source.name  = "A unique source name"
   end
 
+  test "must have a source" do
+    @new_pattern.source = nil
+    assert !@new_pattern.save, 'Successfully saved a pattern without source'
+  end
+
   test "names have to be unique within a source" do
     @new_pattern.name = message_patterns(:client_error).name
     assert !@new_pattern.save, 'Successfully saved a duplicate pattern'

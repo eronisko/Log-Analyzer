@@ -1,8 +1,7 @@
 class LogMessage < ActiveRecord::Base
   belongs_to :log
 
-  validates(:log, presence: true)
-  validates_associated :log
+  validates :log, presence: true
 
   scope :ignored, where(ignored: true)
 
