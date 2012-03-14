@@ -37,4 +37,10 @@ class MessagePatternTest < ActiveSupport::TestCase
     @new_pattern.pattern = nil
     assert !@new_pattern.save
   end
+
+  test "regex_pattern should return a Regexp" do
+    @regex_pattern = message_patterns(:client_error).regexp
+    assert_instance_of Regexp, @regex_pattern
+  end
+
 end

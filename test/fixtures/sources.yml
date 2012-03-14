@@ -4,6 +4,6 @@ apache_combined_errors:
   name: Apache Combined Access Error Messages
   description: extracting error messages
   timestamp_definition: +.
-  field_1_name: errno
-  field_1_definition: \w+
+  field_1_name: client_error
+  field_1_definition: 4\w+
 

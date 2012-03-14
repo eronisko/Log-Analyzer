@@ -29,7 +29,6 @@ class MessagePatternsControllerTest < ActionController::TestCase
 
   test "should show message_pattern" do
     get :show, id: @message_pattern
-    puts @message_pattern.source
     assert_response :success
   end
 

@@ -3,7 +3,7 @@
 client_error:
   source: apache_combined_errors
   name: Client error (4xx)
-  pattern: '.+ \[@timestamp@\] \".+?\" @@client_error_no@@'
+  pattern: '.+ \[@@timestamp@@\] \".+?\" @@client_error_no@@'
   category: Errors
 
 server_error:
