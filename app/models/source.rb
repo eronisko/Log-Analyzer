@@ -9,7 +9,7 @@ class Source < ActiveRecord::Base
   def apply_to_log(log)
     log.log_messages.each do |message|
       message_patterns.each do |pattern|
-        if pattern.regexp.match(message.raw_message) then
+        if pattern.build_regexp.match(message.raw_message) then
       	  message.update_attribute(:message_pattern_id, pattern.id)
       	  break
       	end
@@ -18,6 +18,8 @@ class Source < ActiveRecord::Base
   end
 
   def find_custom_field_id_by_name(name)
+    return name if name == "timestamp"
+
     1.upto(CUSTOM_FIELDS_COUNT) do |n|
       field = "field_#{n}"
       return field if send(field+"_name").eql? name 
@@ -25,6 +27,6 @@ class Source < ActiveRecord::Base
   end
 
   def get_custom_field_pattern(field_id)
-    return send(field_id+"_definition")
+    return send("#{field_id}_definition")
   end
 end

@@ -34,7 +34,7 @@ class SourceTest < ActiveSupport::TestCase
       source.apply_to_log(log)
     end
   end
-
+  
   #TODO
   #test "apply_to_log should reset all the extraction fields at start"
 
