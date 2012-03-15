@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120306183526) do
+ActiveRecord::Schema.define(:version => 20120314131221) do
 
   create_table "ignore_lists", :force => true do |t|
     t.string   "name"
@@ -31,9 +31,10 @@ ActiveRecord::Schema.define(:version => 20120306183526) do
   create_table "log_messages", :force => true do |t|
     t.integer  "log_id"
     t.string   "raw_message"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.boolean  "ignored",     :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.boolean  "ignored",            :default => false
+    t.integer  "message_pattern_id"
   end
 
   create_table "logs", :force => true do |t|
@@ -45,6 +46,25 @@ ActiveRecord::Schema.define(:version => 20120306183526) do
     t.integer  "time_bias"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "message_patterns", :force => true do |t|
+    t.integer  "source_id"
+    t.string   "name"
+    t.string   "pattern"
+    t.string   "category"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "sources", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "timestamp_definition"
+    t.string   "field_1_name"
+    t.string   "field_1_definition"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
 end

@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @source.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @source.description %>
+</p>
+
+<p>
+  <b>Timestamp definition:</b>
+  <%= @source.timestamp_definition %>
+</p>
+
+<p>
+  <b>Field 1 name:</b>
+  <%= @source.field_1_name %>
+</p>
+
+<p>
+  <b>Field 1 definition:</b>
+  <%= @source.field_1_definition %>
+</p>
+
+
+<%= link_to 'View Message Patterns', source_message_patterns_path(@source) %> |
+
+<%= link_to 'Edit', edit_source_path(@source) %> |
+<%= link_to 'Back', sources_path %>

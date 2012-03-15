@@ -24,6 +24,11 @@ class LogTest < ActiveSupport::TestCase
     assert different_log.save
   end
   
+  test "has to have an investigation" do
+    @new_log.investigation = nil
+    assert !@new_log.save
+  end
+
   test "has to have a name" do
     @new_log.name = nil
     assert !@new_log.save

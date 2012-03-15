@@ -1,16 +1,14 @@
 class LogMessage < ActiveRecord::Base
   belongs_to :log
+  belongs_to :message_pattern
 
-  validates(:log, presence: true)
-  validates_associated :log
+  validates :log, presence: true
 
   scope :ignored, where(ignored: true)
-
-  def ignored?
-    ignored
-  end
+  scope :matched, where('message_pattern_id IS NOT NULL')
 
   def ignore!
     update_attribute(:ignored, true)
   end
+  
 end

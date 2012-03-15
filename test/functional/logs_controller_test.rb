@@ -40,7 +40,7 @@ class LogsControllerTest < ActionController::TestCase
   end
 
   test "should show log" do
-    get :show, investigation_id: @investigation, id: @log
+    get :show, id: @log
     assert_response :success
 
     assert_select "div#ignore_list_selector"

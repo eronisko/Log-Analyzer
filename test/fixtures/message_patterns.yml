@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+client_error:
+  source: apache_combined_errors
+  name: Client error (4xx)
+  pattern: '.+ \[@@timestamp@@\] \".+?\" @@client_error@@'
+  category: Errors
+
+#server_error:
+#  source: apache_combined_errors
+#  name: Server error (4xx)
+#  pattern: '.+ \[@timestamp@\] \".+?\" @@server_error_no@@'
+#
+#normal_message:
+#  source: apache_combined_errors
+#  name: Normal operation message (1xx, 2xx, 3xx)
+#  pattern: '.+ \[@timestamp@\] \".+?\" @@http_status_no@@'
