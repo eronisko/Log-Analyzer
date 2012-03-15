@@ -4,7 +4,7 @@ class Source < ActiveRecord::Base
 
   has_many :message_patterns, dependent: :destroy
 
-  CUSTOM_FIELDS_COUNT = 1
+  CUSTOM_FIELDS_COUNT = 4
 
   def apply_to_log(log)
     log.log_messages.each do |message|
