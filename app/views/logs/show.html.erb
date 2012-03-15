@@ -3,11 +3,6 @@
 <% end %>
 
 <p>
-  <b>Investigation:</b>
-  <%= @log.investigation_id %>
-</p>
-
-<p>
   <b>Name:</b>
   <%= @log.name %>
 </p>
@@ -32,6 +27,13 @@
   <%= @log.time_bias %>
 </p>
 
+<div id="ignore_list_selector">
+  <%= form_tag(filter_log_path, method: 'put') do %>
+    <%= collection_select(:ignore_list, :id, IgnoreList.all, :id, :name) %> 
+    <%= submit_tag("Apply") %>
+  <% end %>
+</div>
+
 
 <%= link_to 'Edit', edit_log_path(@log) %> |
-<%= link_to 'Back', investigation_logs_path(@log.investigation) %>
+<%= link_to 'Back', @log.investigation %>

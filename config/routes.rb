@@ -1,9 +1,13 @@
 LogAnalyzer::Application.routes.draw do
 
-  resources :elimination_lists
+  resources :ignore_lists
 
   resources :investigations, shallow: true do
-    resources :logs, except: 'index'
+    resources :logs, except: 'index' do
+      member do
+        put 'filter'
+      end
+    end
   end
 
   # The priority is based upon order of creation:

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doCTYPE html>
 <html>
 <head>
   <title>Log Analyzer</title>
@@ -10,21 +10,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller.controller_name %>">
-  <div id="banner">
-    <%= @page_title || "Log Analyzer" %>
-  </div>
-  <div id="navigation">
-    <ul>
-      <li><%= link_to 'Home', root_path %></li>
-      <li><%= link_to 'Investigations', investigations_path %></li>
-      <li><%= link_to 'Elimination Lists', elimination_lists_path %></li>
-  </div>
-  <div id="main">
-    <%= yield %>
+  <div id="wrap">
+    <div id="main" class="container">
+      <div id="header">
+        <div id="logo">
+          LOG ANALYZER
+        </div>
+        <div id="navigation">
+          <ul>
+            <li><%= link_to 'Home', root_path %></li>
+            <li><%= link_to 'Investigations', investigations_path %></li>
+            <li><%= link_to 'Ignore Lists', ignore_lists_path %></li>
+          </ul>
+        </div>
+      </div>
+      <div id="content">
+        <%= yield %>
+      </div>
+    </div>
   </div>
   <div id="footer"> 
+    <hr>
     <p class="alt">
-      This is a footer
+      Created by Ernest Walzel (ernest.walzel@study.beds.ac.uk)<br>
     </p>
   </div>
 </body>

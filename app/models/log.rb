@@ -2,7 +2,6 @@ class Log < ActiveRecord::Base
   belongs_to :investigation
   has_many :log_messages, dependent: :destroy
 
-  validates_associated :investigation
   validates :name, :data_type, :file, :time_bias, presence: true
   validates :time_bias, numericality: true
   validates_uniqueness_of :name, scope: :investigation_id
@@ -12,6 +11,9 @@ class Log < ActiveRecord::Base
 
   def uploaded_file=(uploaded_file)
     self.file=uploaded_file.original_filename
+  end
+
+  def ignore_list
   end
 
   # Currently only handling plaintext files
