@@ -6,12 +6,6 @@ class LogsControllerTest < ActionController::TestCase
     @log = logs(:web_server)
   end
 
-  test "should get index" do
-    get :index, investigation_id: @investigation.id
-    assert_response :success
-    assert_not_nil assigns(:logs)
-  end
-
   test "should get new" do
     get :new, investigation_id: @investigation
     assert_response :success
