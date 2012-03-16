@@ -23,14 +23,16 @@
     <%= f.label :timestamp_definition %><br />
     <%= f.text_field :timestamp_definition %>
   </div>
+<% 1.upto(Source::CUSTOM_FIELDS_COUNT) do |n| %>
   <div class="field">
-    <%= f.label :field_1_name %><br />
-    <%= f.text_field :field_1_name %>
+    <%= f.label "field_#{n}_name".to_sym %><br />
+    <%= f.text_field "field_#{n}_name".to_sym %>
   </div>
   <div class="field">
-    <%= f.label :field_1_definition %><br />
-    <%= f.text_field :field_1_definition %>
+    <%= f.label "field_#{n}_definition".to_sym %><br />
+    <%= f.text_field "field_#{n}_definition".to_sym %>
   </div>
+<% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
