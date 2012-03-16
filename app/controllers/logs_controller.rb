@@ -86,6 +86,17 @@ class LogsController < ApplicationController
     end
   end
 
+  def analyze
+    @log = Log.find(params[:id])
+    @source = Source.find(params[:source][:id])
+
+    @source.apply_to_log(@log)
+
+    respond_to do |format|
+      format.html { redirect_to @log, notice: 'The log has been analyzed' }
+    end
+  end
+
   private
 
   def get_investigation_from_url
