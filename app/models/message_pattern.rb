@@ -13,6 +13,8 @@ class MessagePattern < ActiveRecord::Base
 
   private
   
+  # replaces the defined keywords by named captures for the appropriate custom
+  # fields
   def replace_keywords
     pattern.gsub(KEYWORD_IDENTIFIER) { |match|
       name = match.sub(KEYWORD_IDENTIFIER, '\1')

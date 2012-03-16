@@ -1,6 +1,18 @@
 class LogsController < ApplicationController
   before_filter :get_investigation_from_url, only: [:new, :create]
   
+  # GET /logs
+  # GET /logs.json
+  def index
+    @investigation = Investigation.find(params[:investigation_id])
+    @logs = @investigation.logs.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @logs }
+    end
+  end
+
   # GET /logs/1
   # GET /logs/1.json
   def show
@@ -15,6 +27,7 @@ class LogsController < ApplicationController
   # GET /logs/new
   # GET /logs/new.json
   def new
+    @investigation = Investigation.find(params[:investigation_id])
     @log = Log.new
 
     respond_to do |format|
@@ -83,6 +96,17 @@ class LogsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to @log, notice: 'The log has been filtered' }
+    end
+  end
+
+  def analyze
+    @log = Log.find(params[:id])
+    @source = Source.find(params[:source][:id])
+
+    @source.apply_to_log(@log)
+
+    respond_to do |format|
+      format.html { redirect_to @log, notice: 'The log has been analyzed' }
     end
   end
 
