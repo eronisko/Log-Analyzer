@@ -2,7 +2,8 @@ class Log < ActiveRecord::Base
   belongs_to :investigation
   has_many :log_messages, dependent: :destroy
 
-  validates :name, :data_type, :file, :time_bias, presence: true
+  validates :name, :data_type, :file, :time_bias, :investigation,
+            presence: true
   validates :time_bias, numericality: true
   validates_uniqueness_of :name, scope: :investigation_id
 
