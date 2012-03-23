@@ -21,18 +21,6 @@ class LogMessageTest < ActiveSupport::TestCase
                  expected_cnt
   end
 
-  #test "apply_source should reset all the extraction fields at start"
-  test "apply_source should apply message_patterns to matching messages" do
-    log = logs(:web_server)
-    source = sources(:apache_combined_errors)
-
-    assert log.log_messages.matched.count == 0
-    
-    assert_difference ('log.log_messages.matched.count') do
-      log.log_messages.apply_source source
-    end
-  end
-
   test "extract_data_by_pattern should extract data from a log message" do
     pattern = message_patterns(:client_error)
     msg = log_messages(:a_404_message)

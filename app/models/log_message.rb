@@ -16,20 +16,7 @@ class LogMessage < ActiveRecord::Base
     self.where{raw_message.like_any ignore_patterns}.update_all(ignored: true)
   end
 
-  def self.apply_source source
-    source.message_patterns.each do |message_pattern|
-      regex_p = message_pattern.to_regexp
-      regex_s = message_pattern.to_s
-      matching_messages = self.unmatched.matching_regex(regex_s)
-
-      matching_messages.each do |message|
-        message.extract_data_by_pattern regex_p, message_pattern
-      end
-
-    end
-  end
-
-  ## Extracts the data into individual fields
+  # Extracts the data into individual fields
   def extract_data_by_pattern(regexp, message_pattern)
     if match = regexp.match(raw_message) then
       # Creates a hash maching :field_x => data
