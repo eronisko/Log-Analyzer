@@ -53,6 +53,17 @@ class SourceTest < ActiveSupport::TestCase
     assert result.eql? source.field_1_definition
   end
 
+  test "extract_data should extract data from a log" do
+    source = sources(:apache_combined_errors)
+    msg = log_messages(:a_404_message)
+    log = msg.log
+
+    assert_nil msg.field_1
+    source.apply_to_log(log)
+    updated_msg = log.log_messages.find(msg)
+    assert_equal "404", updated_msg.field_1
+  end
+
   #TODO
   #test "should validate message_patterns for non-existing entries"
 end

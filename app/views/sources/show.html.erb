@@ -15,16 +15,17 @@
   <%= @source.timestamp_definition %>
 </p>
 
+<% 1.upto(Source::CUSTOM_FIELDS_COUNT) do |n| %>
 <p>
-  <b>Field 1 name:</b>
-  <%= @source.field_1_name %>
+  <b>Field <%= n %> name:</b>
+  <%= @source.send("field_#{n}_name") %>
 </p>
 
 <p>
-  <b>Field 1 definition:</b>
-  <%= @source.field_1_definition %>
+  <b>Field <%= n %> definition:</b>
+  <%= @source.send("field_#{n}_definition") %>
 </p>
-
+<% end %>
 
 <%= link_to 'View Message Patterns', source_message_patterns_path(@source) %> |
 

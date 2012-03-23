@@ -11,7 +11,8 @@ LogAnalyzer::Application.routes.draw do
   resources :investigations, shallow: true do
     resources :logs, except: :index do
       member do
-        put 'filter'
+        put :filter
+        put :analyze
       end
     end
   end
