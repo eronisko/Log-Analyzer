@@ -103,7 +103,7 @@ class LogsController < ApplicationController
     @log = Log.find(params[:id])
     @source = Source.find(params[:source][:id])
 
-    @source.apply_to_log(@log)
+    @log.log_messages.apply_source @source
 
     respond_to do |format|
       format.html { redirect_to @log, notice: 'The log has been analyzed' }

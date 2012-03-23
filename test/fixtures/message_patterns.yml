@@ -6,11 +6,11 @@ client_error:
   pattern: '.+ \[@@timestamp@@\] \".+?\" @@client_error@@'
   category: Errors
 
-#server_error:
-#  source: apache_combined_errors
-#  name: Server error (4xx)
-#  pattern: '.+ \[@timestamp@\] \".+?\" @@server_error_no@@'
-#
+server_error:
+  source: apache_combined_errors
+  name: Server error (5xx)
+  pattern: '.+ \[@timestamp@\] \".+?\" @@server_error@@'
+
 #normal_message:
 #  source: apache_combined_errors
 #  name: Normal operation message (1xx, 2xx, 3xx)

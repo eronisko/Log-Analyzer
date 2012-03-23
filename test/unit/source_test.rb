@@ -24,20 +24,6 @@ class SourceTest < ActiveSupport::TestCase
     assert !@new_source.save
   end
 
-  test "apply_to_log should apply pattern names to matching messages" do
-    log = logs(:web_server)
-    source = sources(:apache_combined_errors)
-
-    assert log.log_messages.matched.count == 0
-    
-    assert_difference ('log.log_messages.matched.count') do
-      source.apply_to_log(log)
-    end
-  end
-  
-  #TODO
-  #test "apply_to_log should reset all the extraction fields at start"
-
   test "find_custom_field_id_by_name should return a field String" do
     source = sources(:apache_combined_errors)
     result = source.find_custom_field_id_by_name("client_error")
@@ -51,17 +37,6 @@ class SourceTest < ActiveSupport::TestCase
     result = source.get_custom_field_pattern(field_id)
 
     assert result.eql? source.field_1_definition
-  end
-
-  test "extract_data should extract data from a log" do
-    source = sources(:apache_combined_errors)
-    msg = log_messages(:a_404_message)
-    log = msg.log
-
-    assert_nil msg.field_1
-    source.apply_to_log(log)
-    updated_msg = log.log_messages.find(msg)
-    assert_equal "404", updated_msg.field_1
   end
 
   #TODO

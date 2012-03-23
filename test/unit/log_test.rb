@@ -51,5 +51,5 @@ class LogTest < ActiveSupport::TestCase
     @new_log.time_bias = 'hello'
     assert !@new_log.save
   end
-    
+
 end
