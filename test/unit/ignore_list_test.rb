@@ -24,12 +24,11 @@ class IgnoreListTest < ActiveSupport::TestCase
     assert !@new_list.save
   end
 
-  test "filter_log should set uninteresting message to ignored" do
-    @log = logs(:web_server)
-    @pattern_list = ignore_lists(:apache_200_300)
-    
-    assert_difference ('@log.log_messages.ignored.count') do
-      @pattern_list.filter_log(@log)
-    end
+  test "to_like_patterns should return an array of patterns" do
+    ignore_list = ignore_lists(:apache_200_300)
+    expected_like_patterns = ['%HTTP/1.1" 30%', '%HTTP/1.1" 200%']
+
+    assert_equal ignore_list.to_like_patterns, expected_like_patterns
   end
+
 end

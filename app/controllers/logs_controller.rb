@@ -92,7 +92,7 @@ class LogsController < ApplicationController
     @log = Log.find(params[:id])
     @ignore_list = IgnoreList.find(params[:ignore_list][:id])
 
-    @ignore_list.filter_log(@log)
+    @log.log_messages.ignore_matching @ignore_list
 
     respond_to do |format|
       format.html { redirect_to @log, notice: 'The log has been filtered' }

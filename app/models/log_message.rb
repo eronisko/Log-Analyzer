@@ -7,8 +7,10 @@ class LogMessage < ActiveRecord::Base
   scope :ignored, where(ignored: true)
   scope :matched, where('message_pattern_id IS NOT NULL')
 
-  def ignore!
-    update_attribute(:ignored, true)
+  def self.ignore_matching(ignore_list)
+    ignore_patterns = ignore_list.to_like_patterns
+    self.where{raw_message.like_any ignore_patterns}.update_all(ignored: true)
   end
+
   
 end
