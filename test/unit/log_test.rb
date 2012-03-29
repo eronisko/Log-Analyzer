@@ -51,5 +51,16 @@ class LogTest < ActiveSupport::TestCase
     @new_log.time_bias = 'hello'
     assert !@new_log.save
   end
+
+  #test "apply_source should reset all the extraction fields at start"
+  test "apply_source should apply message_patterns to matching messages" do
+    log = logs(:web_server)
+    source = sources(:apache_combined_errors)
+
+    assert log.log_messages.matched.count == 0
     
+    assert_difference ('log.log_messages.matched.count') do
+      log.apply_source source
+    end
+  end
 end

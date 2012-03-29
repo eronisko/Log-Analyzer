@@ -38,13 +38,23 @@ class MessagePatternTest < ActiveSupport::TestCase
     assert !@new_pattern.save
   end
 
-  test "build_regexp should return a Regexp" do
-    regex_pattern = message_patterns(:client_error).build_regexp
+  test "to_regexp should return a Regexp" do
+    regex_pattern = message_patterns(:client_error).to_regexp
     assert_instance_of Regexp, regex_pattern
 
     # testing replace_keywords
     desired_string = '.+ \[(?<timestamp>.+)\] \".+?\" (?<field_1>4\w+)'
 
     assert_equal Regexp.new(desired_string), regex_pattern
+  end
+
+  test "to_s should return an interpolated String" do
+    regex_string = message_patterns(:client_error).to_s
+    assert_instance_of String, regex_string
+
+    # testing replace_keywords
+    desired_string = '.+ \[(?<timestamp>.+)\] \".+?\" (?<field_1>4\w+)'
+
+    assert_equal desired_string, regex_string
   end
 end

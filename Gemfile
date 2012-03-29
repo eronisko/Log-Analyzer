@@ -22,6 +22,8 @@ group :assets do
 end
 
 gem 'jquery-rails', '2.0.0'
+gem 'squeel'
+gem 'sqlite3_ar_regexp'
 
 gem 'gchartrb'
 # To use ActiveModel has_secure_password
