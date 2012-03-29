@@ -42,7 +42,37 @@
     <%= submit_tag("Apply") %>
   <% end %>
 </p>
+<% if @log.log_messages.matched.count > 0 then %>
+<hr>
+<%= content_tag :div, id: "charts_section" do %>
+  <h2>Visualisation</h2>
 
-
+  <%= chart_canvas do %> 
+    <%= content_tag(:h4, "Ignored Messages") %>
+    <%= ignored_messages_chart %>
+  <% end %>
+  <%= chart_canvas do %> 
+    <%= content_tag(:h4, "Matched Messages") %>
+    <%= matched_messages_chart %>
+  <% end %>
+  <%= chart_canvas do %> 
+    <%= content_tag(:h4, "Breakdown by Name") %>
+    <%= custom_name_breakdown_chart %>
+  <% end %>
+  <%= chart_canvas do %> 
+    <%= content_tag(:h4, "Breakdown by Category") %>
+    <%= category_breakdown_chart %>
+  <% end %>
+  <%= content_tag :div, class: "span-23" do %>
+    <%= content_tag(:h4, "Breakdown for Custom Fields") %>
+    <% 1.upto(Source::CUSTOM_FIELDS_COUNT) do |n| %>
+      <%= chart_canvas do %> 
+        <%= custom_field_breakdown_chart("field_#{n}") %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+<hr>
+<% end %>
 <%= link_to 'Edit', edit_log_path(@log) %> |
 <%= link_to 'Back', @log.investigation %>
