@@ -1,6 +1,6 @@
-class CreateIgnoreLists < ActiveRecord::Migration
+class CreateEliminationLists < ActiveRecord::Migration
   def change
-    create_table :ignore_lists do |t|
+    create_table :elimination_lists do |t|
       t.string :name
       t.string :description
       t.string :pattern_list
