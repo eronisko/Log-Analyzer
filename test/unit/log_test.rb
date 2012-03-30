@@ -7,6 +7,7 @@ class LogTest < ActiveSupport::TestCase
                        description: 'MySQL database server',
                        data_type: 'plaintext',
                        file: 'test/fixtures/flower_shop_log.log',
+                       message_delimiter: '\n',
                        time_bias: 0
                       )
   end
@@ -50,6 +51,13 @@ class LogTest < ActiveSupport::TestCase
 
     @new_log.time_bias = 'hello'
     assert !@new_log.save
+  end
+
+  test "has to have a message_delimiter which can be blank, but not nil" do
+    @new_log.message_delimiter = nil
+    assert !@new_log.save
+    @new_log.message_delimiter = '\n'
+    assert @new_log.save
   end
 
   #test "apply_source should reset all the extraction fields at start"

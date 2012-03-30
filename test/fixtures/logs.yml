@@ -7,5 +7,6 @@ web_server:
   data_type: plaintext
   file: test/fixtures/flower_shop_log.log
   time_bias: 25
+  message_delimiter: '\n'
 
 #db_server:

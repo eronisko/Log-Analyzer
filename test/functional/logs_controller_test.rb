@@ -19,15 +19,17 @@ class LogsControllerTest < ActionController::TestCase
                            description: "taken from a boat",
                            data_type: "plaintext",
                            time_bias: 0,
+                           message_delimiter: '\n',
                            file: 'my_log'
                           )
 
     assert_difference('Log.count') do
-      log_params = @another_log.attributes
-      log_params["uploaded_file"] = upload_file
-      post :create, log: log_params,
-                    investigation_id: @another_log.investigation_id
-
+      assert_difference('LogMessage.count',7) do
+        log_params = @another_log.attributes
+        log_params["uploaded_file"] = upload_file
+        post :create, log: log_params,
+                      investigation_id: @another_log.investigation_id
+      end
     end
 
     assert_redirected_to log_path(assigns(:log))

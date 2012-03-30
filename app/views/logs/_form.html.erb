@@ -28,8 +28,12 @@
     <%= f.file_field 'uploaded_file' %>
   </div>
   <div class="field">
+    <%= f.label :message_delimiter %><br />
+    <%= f.text_field :message_delimiter, value: '\n' %>
+  </div>
+  <div class="field">
     <%= f.label :time_bias %><br />
-    <%= f.number_field :time_bias %>
+    <%= f.number_field :time_bias, value: 0 %> seconds
   </div>
   <div class="actions">
     <%= f.submit %>
