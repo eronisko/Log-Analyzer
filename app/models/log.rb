@@ -36,9 +36,8 @@ class Log < ActiveRecord::Base
     source.message_patterns.each do |message_pattern|
       regex_p = message_pattern.to_regexp
       regex_s = message_pattern.to_s
-      matching_messages = log_messages.active.unmatched.matching_regex(regex_s)
 
-      matching_messages.each do |message|
+      log_messages.active.unmatched.each do |message|
         message.extract_data_by_pattern regex_p, message_pattern
       end
     end

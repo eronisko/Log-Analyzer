@@ -8,8 +8,6 @@ class LogMessage < ActiveRecord::Base
   scope :active, where(ignored: false)
   scope :matched, where{message_pattern_id != nil}
   scope :unmatched, where{message_pattern_id == nil}
-  scope :matching_regex, ->(regex_string) {
-    where('raw_message REGEXP ?', regex_string) } 
 
   def self.ignore_matching(ignore_list)
     ignore_patterns = ignore_list.to_like_patterns

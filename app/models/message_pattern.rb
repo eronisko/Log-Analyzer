@@ -24,7 +24,7 @@ class MessagePattern < ActiveRecord::Base
       name = match.sub(KEYWORD_IDENTIFIER, '\1')
       field   = source.find_custom_field_id_by_name(name)
       pattern = source.get_custom_field_pattern(field)
-        "(?<#{field}>#{pattern})"
+      "(?<#{field}>#{pattern})"
     }
   end
 
