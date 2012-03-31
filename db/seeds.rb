@@ -17,7 +17,7 @@ web_server = Log.new( investigation: flower_shop,
                       description: 'Apache Combined Access log from the web server',
                       data_type: 'plaintext',
                       file: 'flower_shop_log.log',
-                      message_delimiter: '/n',
+                      message_delimiter: '\n',
                       time_bias: 0
                     )
 log_file = File.new("test/fixtures/files/access_combined.log")
