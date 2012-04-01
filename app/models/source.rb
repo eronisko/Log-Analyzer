@@ -16,6 +16,7 @@ class Source < ActiveRecord::Base
   end
 
   def get_custom_field_pattern(field_id)
+    return ".+?" if field_id == "timestamp"
     return send("#{field_id}_definition")
   end
 end

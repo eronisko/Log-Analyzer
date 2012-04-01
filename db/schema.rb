@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329192908) do
+ActiveRecord::Schema.define(:version => 20120401192355) do
 
   create_table "ignore_lists", :force => true do |t|
     t.string   "name"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20120329192908) do
     t.boolean  "ignored",            :default => false
     t.integer  "message_pattern_id"
     t.string   "field_1"
-    t.string   "timestamp"
+    t.datetime "timestamp"
     t.string   "field_2"
     t.string   "field_3"
     t.string   "field_4"
