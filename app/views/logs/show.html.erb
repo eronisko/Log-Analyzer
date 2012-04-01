@@ -27,21 +27,25 @@
   <%= @log.time_bias %>
 </p>
 
-<p id="ignore_list_selector">
+<div class="field" id="ignore_list_selector">
   <b>Apply Ignore List</b>
-  <%= form_tag(filter_log_path, method: 'put') do %>
-    <%= collection_select(:ignore_list, :id, IgnoreList.all, :id, :name) %> 
-    <%= submit_tag("Apply") %>
+  <%= form_for @log do |f| %>
+    <%= f.collection_select :applied_ignore_list, 
+                            IgnoreList.all, :id, :name,
+                            include_blank: true %> 
+    <%= f.submit("Apply") %>
   <% end %>
-</p>
+</div>
 
-<p id="source_selector">
+<div class="field"  id="source_selector">
   <b>Apply Source Definition</b>
-  <%= form_tag(analyze_log_path, method: 'put') do %>
-    <%= collection_select(:source, :id, Source.all, :id, :name) %> 
-    <%= submit_tag("Apply") %>
+  <%= form_for @log do |f| %>
+    <%= f.collection_select :applied_source,
+                            Source.all, :id, :name,
+                            include_blank: true %> 
+    <%= f.submit("Apply") %>
   <% end %>
-</p>
+</div>
 <%= link_to "Export to CSV", request.parameters.merge({ format: :csv}) %>
 <% if @log.log_messages.matched.count > 0 then %>
 <hr>

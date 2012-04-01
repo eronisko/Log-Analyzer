@@ -89,28 +89,6 @@ class LogsController < ApplicationController
     end
   end
 
-  def filter
-    @log = Log.find(params[:id])
-    @ignore_list = IgnoreList.find(params[:ignore_list][:id])
-
-    @log.log_messages.ignore_matching @ignore_list
-
-    respond_to do |format|
-      format.html { redirect_to @log, notice: 'The log has been filtered' }
-    end
-  end
-
-  def analyze
-    @log = Log.find(params[:id])
-    @source = Source.find(params[:source][:id])
-
-    @log.apply_source @source
-
-    respond_to do |format|
-      format.html { redirect_to @log, notice: 'The log has been analyzed' }
-    end
-  end
-
   private
 
   def get_investigation_from_url

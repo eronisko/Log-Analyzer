@@ -39,8 +39,8 @@ class LogsControllerTest < ActionController::TestCase
     get :show, id: @log
     assert_response :success
 
-    assert_select "p#ignore_list_selector"
-    assert_select "p#source_selector"
+    assert_select "div#ignore_list_selector"
+    assert_select "div#source_selector"
   end
 
 
@@ -68,24 +68,26 @@ class LogsControllerTest < ActionController::TestCase
   end
 
   test "should apply an ignore list" do
-    @pattern_list = ignore_lists(:apache_200_300)
+    @ignore_list = ignore_lists(:apache_200_300)
+    log_params = @log.attributes
+    log_params["applied_ignore_list"] = @ignore_list
 
-    # Test the route
-    assert_recognizes({ controller: "logs", action: "filter", id: "1" },
-                      { method: :put, path: "/logs/1/filter" })
     assert_difference ('@log.log_messages.ignored.count') do
-      put :filter, id: @log, ignore_list: @pattern_list.attributes
+      put :update, id: @log, log: log_params
     end
+    assert_equal @ignore_list, Log.find(@log).ignore_list
   end
 
+  #test "apply_source should reset all the extraction fields at start"
   test "should apply a source" do
     @source = sources(:apache_combined_errors)
 
-    # Test the route
-    assert_recognizes({ controller: "logs", action: "analyze", id: "1" },
-                      { method: :put, path: "/logs/1/analyze" })
+    log_params = @log.attributes
+    log_params["applied_source"] = @source
+
     assert_difference ('@log.log_messages.matched.count') do
-      put :analyze, id: @log, source: @source.attributes
+      put :update, id: @log, log: log_params
     end
+    assert_equal @source, Log.find(@log).source
   end
 end

@@ -1,20 +1,13 @@
 LogAnalyzer::Application.routes.draw do
 
-
   resources :sources, shallow: true do
     resources :message_patterns
   end
 
-
   resources :ignore_lists
 
   resources :investigations, shallow: true do
-    resources :logs, except: :index do
-      member do
-        put :filter
-        put :analyze
-      end
-    end
+    resources :logs 
   end
 
   # The priority is based upon order of creation:

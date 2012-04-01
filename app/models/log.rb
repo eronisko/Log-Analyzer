@@ -1,19 +1,40 @@
 class Log < ActiveRecord::Base
   belongs_to :investigation
   has_many :log_messages, dependent: :destroy
+  belongs_to :ignore_list
+  belongs_to :source
 
   validates :name, :data_type, :file, :time_bias, :investigation, 
             presence: true
   validates :time_bias, numericality: true
   validates_uniqueness_of :name, scope: :investigation_id
   validates :message_delimiter, length: { minimum: 1 } 
-  #validate :message_delimiter_not_empty
 
   # The data types currently accepted by the application
   VALID_DATA_TYPES = ['plaintext']
 
   def uploaded_file=(uploaded_file)
     self.file=uploaded_file.original_filename
+  end
+
+  def applied_ignore_list=(applied_ignore_list)
+    @ignore_list = IgnoreList.find(applied_ignore_list)
+    self.log_messages.ignore_matching @ignore_list
+    self.ignore_list = @ignore_list
+  end
+
+  def applied_ignore_list
+    ignore_list.id if ignore_list
+  end
+
+  def applied_source=(applied_source)
+    @source = Source.find(applied_source)
+    apply_source @source
+    self.source = @source
+  end
+
+  def applied_source
+    source.id if source
   end
 
   # Currently only handling plaintext files
@@ -31,6 +52,8 @@ class Log < ActiveRecord::Base
       end
     end
   end
+
+  private
 
   def apply_source source
     source.message_patterns.each do |message_pattern|
