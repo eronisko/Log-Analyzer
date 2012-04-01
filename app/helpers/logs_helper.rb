@@ -1,5 +1,6 @@
 module LogsHelper
   require 'google_chart'
+  require 'csv'
   MAX_VALUES_SHOWN = 15
 
 
@@ -48,9 +49,6 @@ module LogsHelper
       @log.log_messages.matched.where("#{field_name} IS NOT NULL").
                                 group(field_name.to_sym).count
 
-    logger.debug "@@@@@@ #{field_name} @@@@@"
-    logger.debug custom_fields_groups.inspect
-
     if !custom_fields_groups.blank? then
       data = Array.new
       custom_fields_groups.each do |group,message_count|
@@ -76,6 +74,17 @@ module LogsHelper
   def chart_canvas(&block)
     content = capture(&block)
     content_tag :div, content, class: "span-11 chart_canvas"
+  end
+
+  def show_log_messages
+    CSV.generate do |csv|
+      cols = ["timestamp"]
+      cols += 1.upto(Source::CUSTOM_FIELDS_COUNT).map{|n| "field_#{n}"}
+      csv << cols.map {|col| col.humanize}
+      @log.log_messages.matched.each do |message|
+        csv << cols.map{ |col| message[col.to_sym] }
+      end
+    end
   end
 
   private

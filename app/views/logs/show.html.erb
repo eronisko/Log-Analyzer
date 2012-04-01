@@ -42,6 +42,7 @@
     <%= submit_tag("Apply") %>
   <% end %>
 </p>
+<%= link_to "Export to CSV", request.parameters.merge({ format: :csv}) %>
 <% if @log.log_messages.matched.count > 0 then %>
 <hr>
 <%= content_tag :div, id: "charts_section" do %>
