@@ -43,7 +43,7 @@ class MessagePatternTest < ActiveSupport::TestCase
     assert_instance_of Regexp, regex_pattern
 
     # testing replace_keywords
-    desired_string = '.+ \[(?<timestamp>.+)\] \".+?\" (?<field_1>4\w+)'
+    desired_string = '.+ \[(?<timestamp>.+?)\] \".+?\" (?<field_1>4\w+)'
 
     assert_equal Regexp.new(desired_string), regex_pattern
   end
@@ -53,7 +53,7 @@ class MessagePatternTest < ActiveSupport::TestCase
     assert_instance_of String, regex_string
 
     # testing replace_keywords
-    desired_string = '.+ \[(?<timestamp>.+)\] \".+?\" (?<field_1>4\w+)'
+    desired_string = '.+ \[(?<timestamp>.+?)\] \".+?\" (?<field_1>4\w+)'
 
     assert_equal desired_string, regex_string
   end

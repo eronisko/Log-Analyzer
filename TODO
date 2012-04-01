@@ -1,5 +1,3 @@
-Parse time 
-	Apply time bias
 Export category & name in CSV
 Keep it RESTful for Logs
 foreign indexes, get rid of last update

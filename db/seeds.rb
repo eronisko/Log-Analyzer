@@ -33,7 +33,7 @@ apache_2x_3x_ignore_list = IgnoreList.create(
 Source.delete_all
 apache_combined_source = Source.create( name: 'Apache Combined Access Error Messages',
                                         description: 'extracting error messages',
-                                        timestamp_definition: '.+',
+                                        timestamp_definition: '%d/%b/%Y:%H:%M:%S',
                                         field_1_name: 'ip_address',
                                         field_1_definition: '.+',
                                         field_2_name: 'http_method',
