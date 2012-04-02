@@ -18,23 +18,33 @@ class Log < ActiveRecord::Base
   end
 
   def applied_ignore_list=(applied_ignore_list)
-    @ignore_list = IgnoreList.find(applied_ignore_list)
-    self.log_messages.ignore_matching @ignore_list
-    self.ignore_list = @ignore_list
+    log_messages.unignore!
+    if !applied_ignore_list.empty? then
+      @ignore_list = IgnoreList.find(applied_ignore_list)
+      log_messages.ignore_matching @ignore_list
+      self.ignore_list = @ignore_list
+    else 
+      self.ignore_list = nil
+    end
   end
 
   def applied_ignore_list
-    ignore_list.id if ignore_list
+    ignore_list_id
   end
 
   def applied_source=(applied_source)
-    @source = Source.find(applied_source)
-    apply_source @source
-    self.source = @source
+    log_messages.unmatch!
+    if !applied_source.empty? then
+      @source = Source.find(applied_source)
+      apply_source @source
+      self.source = @source
+    else
+      self.source = nil
+    end
   end
 
   def applied_source
-    source.id if source
+    source_id
   end
 
   # Currently only handling plaintext files

@@ -2,6 +2,7 @@ require 'test_helper'
 
 class LogTest < ActiveSupport::TestCase
   setup do
+    @log = logs(:web_server)
     @new_log = Log.new(investigation: investigations(:flower_shop),
                        name: 'Database Log',
                        description: 'MySQL database server',
@@ -10,6 +11,8 @@ class LogTest < ActiveSupport::TestCase
                        message_delimiter: '\n',
                        time_bias: 0
                       )
+    @ignore_list = ignore_lists(:apache_200_300)
+    @source = sources(:apache_combined_errors) 
   end
 
   test "log names have to be unique within an investigation" do
@@ -60,5 +63,29 @@ class LogTest < ActiveSupport::TestCase
     assert @new_log.save
   end
 
-  #test "apply_source should reset all the extraction fields at start"
+  test "applied_ignore_list should ignore matching the messages" do
+    assert_difference ('@log.log_messages.ignored.count') do
+      @log.applied_ignore_list=@ignore_list.id.to_s
+    end
+  end
+
+  test "applied_ignore_list=nil should unignore all the messages" do
+    @log.applied_ignore_list=@ignore_list.id.to_s
+    assert_difference ('@log.log_messages.active.count') do
+      @log.applied_ignore_list=""
+    end
+  end
+
+  test "applied_source should extract matching the messages" do
+    assert_difference ('@log.log_messages.matched.count') do
+      @log.applied_source=@source.id.to_s
+    end
+  end
+
+  test "applied_source=nil should unmatch all the messages" do
+    @log.applied_source=@source.id.to_s
+    assert_difference ('@log.log_messages.unmatched.count') do
+      @log.applied_source=""
+    end
+  end
 end

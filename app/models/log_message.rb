@@ -14,6 +14,17 @@ class LogMessage < ActiveRecord::Base
     self.where{raw_message.like_any ignore_patterns}.update_all(ignored: true)
   end
 
+  def self.unmatch!
+    fields = LogMessage.new.attributes
+    kept_fields = ['id', 'log_id', 'raw_message','created_at','updated_at']
+    kept_fields.map {|kept| fields.delete(kept)}
+    self.update_all(fields)
+  end
+
+  def self.unignore!
+    self.update_all(ignored: false)
+  end
+
   # Extracts the data into individual fields
   def extract_data_by_pattern(regexp, message_pattern)
     if match = regexp.match(raw_message) then
