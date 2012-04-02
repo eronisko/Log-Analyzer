@@ -47,6 +47,6 @@ class MessagePatternsControllerTest < ActionController::TestCase
       delete :destroy, id: @message_pattern
     end
 
-    assert_redirected_to source_message_patterns_path(assigns(:source))
+    assert_redirected_to source_message_patterns_path(assigns(:message_pattern).source)
   end
 end

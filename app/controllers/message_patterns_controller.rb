@@ -3,7 +3,7 @@ class MessagePatternsController < ApplicationController
   # GET /message_patterns
   # GET /message_patterns.json
   def index
-    @message_patterns = MessagePattern.all
+    @message_patterns = @source.message_patterns
 
     respond_to do |format|
       format.html # index.html.erb
@@ -79,7 +79,8 @@ class MessagePatternsController < ApplicationController
     @message_pattern.destroy
 
     respond_to do |format|
-      format.html { redirect_to source_message_patterns_url(@source) }
+      format.html { 
+        redirect_to source_message_patterns_url(@message_pattern.source) }
       format.json { head :no_content }
     end
   end
