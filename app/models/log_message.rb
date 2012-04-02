@@ -16,7 +16,7 @@ class LogMessage < ActiveRecord::Base
 
   def self.unmatch!
     fields = LogMessage.new.attributes
-    kept_fields = ['id', 'log_id', 'raw_message','created_at','updated_at']
+    kept_fields = ['id', 'log_id', 'raw_message']
     kept_fields.map {|kept| fields.delete(kept)}
     self.update_all(fields)
   end
