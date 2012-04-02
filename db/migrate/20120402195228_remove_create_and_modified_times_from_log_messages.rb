@@ -1,5 +1,9 @@
 class RemoveCreateAndModifiedTimesFromLogMessages < ActiveRecord::Migration
-  def change
-    remove_columns :log_messages, :created_at, :updated_at
+  def up
+    remove_timestamps :log_messages
+  end
+
+  def down
+    add_timestamps :log_messages
   end
 end
