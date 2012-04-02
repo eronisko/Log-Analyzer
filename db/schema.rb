@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120402195228) do
+ActiveRecord::Schema.define(:version => 20120402201042) do
 
   create_table "ignore_lists", :force => true do |t|
     t.string   "name"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(:version => 20120402195228) do
     t.string   "field_4"
   end
 
+  add_index "log_messages", ["log_id", "message_pattern_id"], :name => "index_log_messages_on_log_id_and_message_pattern_id"
+
   create_table "logs", :force => true do |t|
     t.integer  "investigation_id"
     t.string   "name"
@@ -54,6 +56,8 @@ ActiveRecord::Schema.define(:version => 20120402195228) do
     t.integer  "source_id"
   end
 
+  add_index "logs", ["investigation_id", "ignore_list_id", "source_id"], :name => "index_logs_on_investigation_id_and_ignore_list_id_and_source_id"
+
   create_table "message_patterns", :force => true do |t|
     t.integer  "source_id"
     t.string   "name"
@@ -62,6 +66,8 @@ ActiveRecord::Schema.define(:version => 20120402195228) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "message_patterns", ["source_id"], :name => "index_message_patterns_on_source_id"
 
   create_table "sources", :force => true do |t|
     t.string   "name"
