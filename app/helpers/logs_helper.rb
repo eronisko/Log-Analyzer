@@ -56,7 +56,8 @@ module LogsHelper
                   data:  message_count
                 } 
       end
-      pie_chart(data, field_name)
+      custom_name = @log.source.send("#{field_name}_name").humanize
+      pie_chart(data, custom_name)
     end 
   end
 
