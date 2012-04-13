@@ -26,7 +26,22 @@
 </p>
 <% end %>
 
-<%= link_to 'View Message Patterns', source_message_patterns_path(@source) %> |
-
+<h5>Message patterns</h5>
+<% if @source.message_patterns.any? %> 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Created</th>
+    <th>Last Modified</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <%= render(@source.message_patterns) %>
+</table>
+<% else %>
+  <%= content_tag :p, content_tag(:em, "No message patterns to show.") %> 
+<% end %>
 <%= link_to 'Edit', edit_source_path(@source) %> |
 <%= link_to 'Back', sources_path %>

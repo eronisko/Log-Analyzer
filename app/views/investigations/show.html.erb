@@ -11,7 +11,7 @@
 <%= link_to 'Edit description', edit_investigation_path(@investigation) %>
 <hr class="space">
 <h5>Listing logs for investigation <%= @investigation.name %></h5>
-
+<% if @investigation.logs.any? %> 
 <table>
   <tr>
     <th>Name</th>
@@ -24,10 +24,10 @@
     <th></th>
     <th></th>
   </tr>
-  <%= render(@investigation.logs) || 
-    content_tag( :tr, content_tag(:td,
-                                  "No logs have been uploaded yet.",
-                                  colspan: 9)) %> 
+  <%= render(@investigation.logs) %>
 </table>
+<% else %>
+  <%= content_tag :p, content_tag(:em, "Uploaded logs will be shown here.") %> 
+<% end %>
 
 <%= link_to 'Add a new log', new_investigation_log_path(@investigation) %>
