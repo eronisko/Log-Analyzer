@@ -1,24 +1,27 @@
 <%= show_notice %>
-<p>
-  <b>Source:</b>
-  <%= @message_pattern.source_id %>
-</p>
+<h4><%=@message_pattern.source.name %></h4>
+<h2><%=@message_pattern.name %></h2>
+<div class="show_fields">
+  <p>
+    <b>Source:</b>
+    <%= @message_pattern.source_id %>
+  </p>
 
-<p>
-  <b>Name:</b>
-  <%= @message_pattern.name %>
-</p>
+  <p>
+    <b>Name:</b>
+    <%= @message_pattern.name %>
+  </p>
 
-<p>
-  <b>Pattern:</b>
-  <%= @message_pattern.pattern %>
-</p>
+  <p>
+    <b>Pattern:</b>
+    <%= @message_pattern.pattern %>
+  </p>
 
-<p>
-  <b>Category:</b>
-  <%= @message_pattern.category %>
-</p>
-
+  <p>
+    <b>Category:</b>
+    <%= @message_pattern.category %>
+  </p>
+</div>
 
 <%= link_to 'Edit', edit_message_pattern_path(@message_pattern) %> |
 <%= link_to 'Back', source_message_patterns_path(@source) %>

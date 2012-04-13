@@ -1,15 +1,16 @@
-<h2><%=@ignore_list.name %></h2>
 <%= show_notice %>
-<p>
-  <b>Description:</b>
-  <%= @ignore_list.description %>
-</p>
+<h2><%=@ignore_list.name %></h2>
+<div class="show_fields">
+  <p>
+    <b>Description:</b>
+    <%= @ignore_list.description %>
+  </p>
 
-<p>
-  <b>Pattern list:</b>
-  <%= @ignore_list.pattern_list %>
-</p>
-
+  <p>
+    <b>Pattern list:</b>
+    <%= @ignore_list.pattern_list %>
+  </p>
+</div>
 
 <%= link_to 'Edit', edit_ignore_list_path(@ignore_list) %> |
 <%= link_to 'Back', ignore_lists_path %>

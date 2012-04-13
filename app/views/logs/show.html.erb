@@ -1,53 +1,53 @@
 <%= show_notice %>
-<p>
-  <b>Name:</b>
-  <%= @log.name %>
-</p>
+<h4><%=@log.investigation.name %></h4>
+<h2><%=@log.name %></h2>
+<div class="show_fields span-10">
+  <p>
+    <b>Description:</b>
+    <%= @log.description %>
+  </p>
 
-<p>
-  <b>Description:</b>
-  <%= @log.description %>
-</p>
+  <p>
+    <b>Data type:</b>
+    <%= @log.data_type %>
+  </p>
 
-<p>
-  <b>Data type:</b>
-  <%= @log.data_type %>
-</p>
+  <p>
+    <b>File:</b>
+    <%= @log.file %>
+  </p>
 
-<p>
-  <b>File:</b>
-  <%= @log.file %>
-</p>
-
-<p>
-  <b>Time bias:</b>
-  <%= @log.time_bias %>
-</p>
-
-<div class="field" id="ignore_list_selector">
-  <b>Apply Ignore List</b>
-  <%= form_for @log do |f| %>
-    <%= f.collection_select :applied_ignore_list, 
-                            IgnoreList.all, :id, :name,
-                            include_blank: true %> 
-    <%= f.submit("Apply") %>
-  <% end %>
+  <p>
+    <b>Time bias:</b>
+    <%= @log.time_bias %>
+  </p>
 </div>
-
-<div class="field"  id="source_selector">
-  <b>Apply Source Definition</b>
-  <%= form_for @log do |f| %>
-    <%= f.collection_select :applied_source,
-                            Source.all, :id, :name,
-                            include_blank: true %> 
-    <%= f.submit("Apply") %>
-  <% end %>
+<div id="log_actions" class="span-8">
+  <div class="field" id="ignore_list_selector">
+    <b>Apply Ignore List</b>
+    <%= form_for @log do |f| %>
+      <%= f.collection_select :applied_ignore_list, 
+                              IgnoreList.all, :id, :name,
+                              include_blank: true %> 
+      <%= f.submit("Apply") %>
+    <% end %>
+  </div>
+  <div class="field"  id="source_selector">
+    <b>Apply Source Definition</b>
+    <%= form_for @log do |f| %>
+      <%= f.collection_select :applied_source,
+                              Source.all, :id, :name,
+                              include_blank: true %> 
+      <%= f.submit("Apply") %>
+    <% end %>
+  </div>
+  <br>
+  <%= link_to "Export to CSV", request.parameters.merge({ format: :csv}) %>
 </div>
-<%= link_to "Export to CSV", request.parameters.merge({ format: :csv}) %>
 <% if @log.log_messages.matched.count > 0 then %>
 <hr>
 <%= content_tag :div, id: "charts_section" do %>
-  <h2>Visualisation</h2>
+  <h3>Visualisation</h3>
 
   <%= chart_canvas do %> 
     <%= content_tag(:h4, "Ignored Messages") %>

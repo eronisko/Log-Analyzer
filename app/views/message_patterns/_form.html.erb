@@ -1,7 +1,7 @@
 <%= form_for [@source, @message_pattern] do |f| %>
   <% if @message_pattern.errors.any? %>
     <div class="error">
-      <h2><%= pluralize(@message_pattern.errors.count, "error") %> prohibited this message_pattern from being saved:</h2>
+      <h2><%= pluralize(@message_pattern.errors.count, "error") %> prohibited this message pattern from being saved:</h2>
 
       <ul>
       <% @message_pattern.errors.full_messages.each do |msg| %>

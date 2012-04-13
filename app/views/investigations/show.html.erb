@@ -1,16 +1,14 @@
 <%= show_notice %>
-<p>
-  <b>Name:</b>
-  <%= @investigation.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @investigation.description %>
-</p>
-<%= link_to 'Edit description', edit_investigation_path(@investigation) %>
-<hr class="space">
-<h5>Listing logs for investigation <%= @investigation.name %></h5>
+<h2><%=@investigation.name %></h2>
+<div class="show_fields">
+  <p>
+    <%= @investigation.description %>
+  </p>
+</div>
+<%= link_to 'Edit', edit_investigation_path(@investigation) %> |
+<%= link_to 'Back', investigations_path %>
+<hr>
+<h4>Logs for this investigation</h4>
 <% if @investigation.logs.any? %> 
 <table>
   <tr>

@@ -1,32 +1,32 @@
 <%= show_notice %>
-<p>
-  <b>Name:</b>
-  <%= @source.name %>
-</p>
+<h2><%=@source.name %></h2>
+<div class="show_fields">
+  <p>
+    <b>Description:</b>
+    <%= @source.description %>
+  </p>
 
-<p>
-  <b>Description:</b>
-  <%= @source.description %>
-</p>
+  <p>
+    <b>Timestamp definition:</b>
+    <%= @source.timestamp_definition %>
+  </p>
 
-<p>
-  <b>Timestamp definition:</b>
-  <%= @source.timestamp_definition %>
-</p>
+  <% 1.upto(Source::CUSTOM_FIELDS_COUNT) do |n| %>
+  <p>
+    <b>Field <%= n %> name:</b>
+    <%= @source.send("field_#{n}_name") %>
+  </p>
 
-<% 1.upto(Source::CUSTOM_FIELDS_COUNT) do |n| %>
-<p>
-  <b>Field <%= n %> name:</b>
-  <%= @source.send("field_#{n}_name") %>
-</p>
-
-<p>
-  <b>Field <%= n %> definition:</b>
-  <%= @source.send("field_#{n}_definition") %>
-</p>
-<% end %>
-
-<h5>Message patterns</h5>
+  <p>
+    <b>Field <%= n %> definition:</b>
+    <%= @source.send("field_#{n}_definition") %>
+  </p>
+  <% end %>
+</div>
+<%= link_to 'Edit', edit_source_path(@source) %> |
+<%= link_to 'Back', sources_path %>
+<hr>
+<h4>Message patterns</h4>
 <% if @source.message_patterns.any? %> 
 <table>
   <tr>
@@ -43,5 +43,6 @@
 <% else %>
   <%= content_tag :p, content_tag(:em, "No message patterns to show.") %> 
 <% end %>
-<%= link_to 'Edit', edit_source_path(@source) %> |
-<%= link_to 'Back', sources_path %>
+
+<%= link_to 'Add a message_pattern',
+            new_source_message_pattern_path(@source) %>

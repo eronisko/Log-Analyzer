@@ -1,7 +1,7 @@
 <%= form_for(@ignore_list) do |f| %>
   <% if @ignore_list.errors.any? %>
     <div class="error">
-      <h2><%= pluralize(@ignore_list.errors.count, "error") %> prohibited this ignore_list from being saved:</h2>
+      <h2><%= pluralize(@ignore_list.errors.count, "error") %> prohibited this ignore list from being saved:</h2>
 
       <ul>
       <% @ignore_list.errors.full_messages.each do |msg| %>
