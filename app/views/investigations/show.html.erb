@@ -24,7 +24,10 @@
     <th></th>
     <th></th>
   </tr>
-<%= render @investigation.logs || "There are no logs, sir" %> 
+  <%= render(@investigation.logs) || 
+    content_tag( :tr, content_tag(:td,
+                                  "No logs have been uploaded yet.",
+                                  colspan: 9)) %> 
 </table>
 
 <%= link_to 'Add a new log', new_investigation_log_path(@investigation) %>
