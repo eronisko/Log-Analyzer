@@ -1,6 +1,6 @@
 <%= form_for [@investigation, @log] do |f| %>
   <% if @log.errors.any? %>
-    <div id="error_explanation">
+    <div class="error">
       <h2><%= pluralize(@log.errors.count, "error") %> prohibited this log from being saved:</h2>
 
       <ul>

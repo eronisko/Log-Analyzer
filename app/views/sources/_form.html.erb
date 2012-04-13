@@ -1,6 +1,6 @@
 <%= form_for(@source) do |f| %>
   <% if @source.errors.any? %>
-    <div id="error_explanation">
+    <div class="error">
       <h2><%= pluralize(@source.errors.count, "error") %> prohibited this source from being saved:</h2>
 
       <ul>

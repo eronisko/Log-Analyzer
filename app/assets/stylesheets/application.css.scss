@@ -101,3 +101,13 @@ h1,h2,h3 {
   text-align: center;
 }
 
+.error {
+  h2 {
+    font-size: 14px;
+    text-shadow: none;
+  }
+}
+
+.field_with_errors {
+  border-left: 3px solid red;
+}
