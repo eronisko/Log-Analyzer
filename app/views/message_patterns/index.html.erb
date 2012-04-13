@@ -2,16 +2,6 @@
 <h2>Message Patterns</h2>
 
 <%= link_to "Back to #{@source.name}",source_path(@source) %>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Category</th>
-    <th>Created</th>
-    <th>Last Modified</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @message_patterns.each do |message_pattern| %>
   <tr>

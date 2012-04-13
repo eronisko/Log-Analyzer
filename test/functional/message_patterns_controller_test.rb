@@ -6,12 +6,6 @@ class MessagePatternsControllerTest < ActionController::TestCase
     @source = sources(:apache_combined_errors)
   end
 
-  test "should get index" do
-    get :index, source_id: @source
-    assert_response :success
-    assert_not_nil assigns(:message_patterns)
-  end
-
   test "should get new" do
     get :new, source_id: @source
     assert_response :success

@@ -1,15 +1,5 @@
 class MessagePatternsController < ApplicationController
-  before_filter :get_source_from_url, only: [:index, :new, :create, :delete]
-  # GET /message_patterns
-  # GET /message_patterns.json
-  def index
-    @message_patterns = @source.message_patterns
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @message_patterns }
-    end
-  end
+  before_filter :get_source_from_url, only: [:new, :create, :delete]
 
   # GET /message_patterns/1
   # GET /message_patterns/1.json

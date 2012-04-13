@@ -1,17 +1,5 @@
 class LogsController < ApplicationController
   before_filter :get_investigation_from_url, only: [:new, :create]
-  
-  # GET /logs
-  # GET /logs.json
-  def index
-    @investigation = Investigation.find(params[:investigation_id])
-    @logs = @investigation.logs.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @logs }
-    end
-  end
 
   # GET /logs/1
   # GET /logs/1.json
