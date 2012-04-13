@@ -1,12 +1,11 @@
-<h1>Listing sources</h1>
+<h1>Sources</h1>
 
 <table>
   <tr>
     <th>Name</th>
     <th>Description</th>
-    <th>Timestamp definition</th>
-    <th>Field 1 name</th>
-    <th>Field 1 definition</th>
+    <th>Created</th>
+    <th>Last Modified</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,9 +15,8 @@
   <tr>
     <td><%= source.name %></td>
     <td><%= source.description %></td>
-    <td><%= source.timestamp_definition %></td>
-    <td><%= source.field_1_name %></td>
-    <td><%= source.field_1_definition %></td>
+    <td><%= source.created_at %></td>
+    <td><%= time_ago_in_words(source.updated_at) %> ago</td>
     <td><%= link_to 'Show', source %></td>
     <td><%= link_to 'Edit', edit_source_path(source) %></td>
     <td><%= link_to 'Destroy', source, confirm: 'Are you sure?', method: :delete %></td>

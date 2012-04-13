@@ -1,12 +1,13 @@
-<h1>Listing message_patterns</h1>
+<h4><%= @source.name %></h4>
+<h2>Message Patterns</h2>
 
 <%= link_to "Back to #{@source.name}",source_path(@source) %>
 <table>
   <tr>
-    <th>Source</th>
     <th>Name</th>
-    <th>Pattern</th>
     <th>Category</th>
+    <th>Created</th>
+    <th>Last Modified</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,10 +15,10 @@
 
 <% @message_patterns.each do |message_pattern| %>
   <tr>
-    <td><%= message_pattern.source_id %></td>
     <td><%= message_pattern.name %></td>
-    <td><%= message_pattern.pattern %></td>
     <td><%= message_pattern.category %></td>
+    <td><%= message_pattern.created_at %></td>
+    <td><%= time_ago_in_words(message_pattern.updated_at) %> ago</td>
     <td><%= link_to 'Show', message_pattern %></td>
     <td><%= link_to 'Edit', edit_message_pattern_path(message_pattern) %></td>
     <td><%= link_to 'Destroy', message_pattern, confirm: 'Are you sure?', method: :delete %></td>

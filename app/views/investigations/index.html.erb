@@ -4,6 +4,8 @@
   <tr>
     <th>Name</th>
     <th>Description</th>
+    <th>Created</th>
+    <th>Last Modified</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +15,8 @@
   <tr>
     <td><%= investigation.name %></td>
     <td><%= investigation.description %></td>
+    <td><%= investigation.created_at %></td>
+    <td><%= time_ago_in_words(investigation.updated_at) %> ago</td>
     <td><%= link_to 'Show', investigation %></td>
     <td><%= link_to 'Edit', edit_investigation_path(investigation) %></td>
     <td><%= link_to 'Destroy', investigation, confirm: 'Are you sure?', method: :delete %></td>
