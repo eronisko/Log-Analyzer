@@ -69,6 +69,7 @@ class LogsController < ApplicationController
   # DELETE /logs/1.json
   def destroy
     @log = Log.find(params[:id])
+    @log.log_messages.delete_all
     @log.destroy
 
     respond_to do |format|
