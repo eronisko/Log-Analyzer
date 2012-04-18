@@ -3,11 +3,6 @@
 <h2><%=@message_pattern.name %></h2>
 <div class="show_fields">
   <p>
-    <b>Source:</b>
-    <%= @message_pattern.source_id %>
-  </p>
-
-  <p>
     <b>Name:</b>
     <%= @message_pattern.name %>
   </p>
@@ -24,4 +19,4 @@
 </div>
 
 <%= link_to 'Edit', edit_message_pattern_path(@message_pattern) %> |
-<%= link_to 'Back', source_message_patterns_path(@source) %>
+<%= link_to 'Back', source_path(@source) %>
