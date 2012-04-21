@@ -31,10 +31,10 @@ ActiveRecord::Schema.define(:version => 20120402201042) do
   create_table "log_messages", :force => true do |t|
     t.integer  "log_id"
     t.string   "raw_message"
-    t.boolean  "ignored",            :default => false
+    t.boolean  "ignored",                           :default => false
     t.integer  "message_pattern_id"
     t.string   "field_1"
-    t.datetime "timestamp"
+    t.datetime "timestamp",          :limit => 255
     t.string   "field_2"
     t.string   "field_3"
     t.string   "field_4"

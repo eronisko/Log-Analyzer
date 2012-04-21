@@ -44,11 +44,15 @@ class IgnoreListsController < ApplicationController
 
     respond_to do |format|
       if @ignore_list.save
-        format.html { redirect_to @ignore_list, notice: 'Ignore list was successfully created.' }
-        format.json { render json: @ignore_list, status: :created, location: @ignore_list }
+        format.html { redirect_to @ignore_list,
+                      notice: 'Ignore list was successfully created.' }
+        format.json { render json: @ignore_list, 
+                      status: :created,
+                      location: @ignore_list }
       else
         format.html { render action: "new" }
-        format.json { render json: @ignore_list.errors, status: :unprocessable_entity }
+        format.json { render json: @ignore_list.errors,
+                      status: :unprocessable_entity }
       end
     end
   end
@@ -60,11 +64,13 @@ class IgnoreListsController < ApplicationController
 
     respond_to do |format|
       if @ignore_list.update_attributes(params[:ignore_list])
-        format.html { redirect_to @ignore_list, notice: 'Ignore list was successfully updated.' }
+        format.html { redirect_to @ignore_list,
+                      notice: 'Ignore list was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @ignore_list.errors, status: :unprocessable_entity }
+        format.json { render json: @ignore_list.errors,
+                      status: :unprocessable_entity }
       end
     end
   end

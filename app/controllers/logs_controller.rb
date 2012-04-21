@@ -40,11 +40,15 @@ class LogsController < ApplicationController
       if @log.save
       	@log.import_to_db(params[:log][:uploaded_file])
 
-        format.html { redirect_to @log, notice: 'Log was successfully created.' }
-        format.json { render json: @log, status: :created, location: @log }
+        format.html { redirect_to @log,
+                      notice: 'Log was successfully created.' }
+        format.json { render json: @log,
+                      status: :created, location: @log }
       else
-        format.html { render action: "new", investigation: @investigation}
-        format.json { render json: @log.errors, status: :unprocessable_entity }
+        format.html { render action: "new",
+                      investigation: @investigation}
+        format.json { render json: @log.errors,
+                      status: :unprocessable_entity }
       end
     end
   end
@@ -56,11 +60,13 @@ class LogsController < ApplicationController
 
     respond_to do |format|
       if @log.update_attributes(params[:log])
-        format.html { redirect_to @log, notice: 'Log was successfully updated.' }
+        format.html { redirect_to @log,
+                      notice: 'Log was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @log.errors, status: :unprocessable_entity }
+        format.json { render json: @log.errors,
+                      status: :unprocessable_entity }
       end
     end
   end

@@ -37,11 +37,14 @@ class MessagePatternsController < ApplicationController
 
     respond_to do |format|
       if @message_pattern.save
-        format.html { redirect_to @message_pattern, notice: 'Message pattern was successfully created.' }
-        format.json { render json: @message_pattern, status: :created, location: @message_pattern }
+        format.html { redirect_to @message_pattern,
+                      notice: 'Message pattern was successfully created.' }
+        format.json { render json: @message_pattern,
+                      status: :created, location: @message_pattern }
       else
         format.html { render action: "new", source: @source }
-        format.json { render json: @message_pattern.errors, status: :unprocessable_entity }
+        format.json { render json: @message_pattern.errors,
+                      status: :unprocessable_entity }
       end
     end
   end
@@ -53,11 +56,13 @@ class MessagePatternsController < ApplicationController
 
     respond_to do |format|
       if @message_pattern.update_attributes(params[:message_pattern])
-        format.html { redirect_to @message_pattern, notice: 'Message pattern was successfully updated.' }
+        format.html { redirect_to @message_pattern,
+                      notice: 'Message pattern was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @message_pattern.errors, status: :unprocessable_entity }
+        format.json { render json: @message_pattern.errors,
+                      status: :unprocessable_entity }
       end
     end
   end

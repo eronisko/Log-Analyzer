@@ -44,11 +44,14 @@ class SourcesController < ApplicationController
 
     respond_to do |format|
       if @source.save
-        format.html { redirect_to @source, notice: 'Source was successfully created.' }
-        format.json { render json: @source, status: :created, location: @source }
+        format.html { redirect_to @source, 
+                      notice: 'Source was successfully created.' }
+        format.json { render json: @source, 
+                      status: :created, location: @source }
       else
         format.html { render action: "new" }
-        format.json { render json: @source.errors, status: :unprocessable_entity }
+        format.json { render json: @source.errors, 
+                      status: :unprocessable_entity }
       end
     end
   end
@@ -60,11 +63,13 @@ class SourcesController < ApplicationController
 
     respond_to do |format|
       if @source.update_attributes(params[:source])
-        format.html { redirect_to @source, notice: 'Source was successfully updated.' }
+        format.html { redirect_to @source,
+                      notice: 'Source was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @source.errors, status: :unprocessable_entity }
+        format.json { render json: @source.errors,
+                      status: :unprocessable_entity }
       end
     end
   end

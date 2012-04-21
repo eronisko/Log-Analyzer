@@ -44,11 +44,15 @@ class InvestigationsController < ApplicationController
 
     respond_to do |format|
       if @investigation.save
-        format.html { redirect_to @investigation, notice: 'Investigation was successfully created.' }
-        format.json { render json: @investigation, status: :created, location: @investigation }
+        format.html { redirect_to @investigation, 
+                      notice: 'Investigation was successfully created.' }
+        format.json { render json: @investigation,
+                      status: :created,
+                      location: @investigation }
       else
         format.html { render action: "new" }
-        format.json { render json: @investigation.errors, status: :unprocessable_entity }
+        format.json { render json: @investigation.errors,
+                      status: :unprocessable_entity }
       end
     end
   end
@@ -60,11 +64,13 @@ class InvestigationsController < ApplicationController
 
     respond_to do |format|
       if @investigation.update_attributes(params[:investigation])
-        format.html { redirect_to @investigation, notice: 'Investigation was successfully updated.' }
+        format.html { redirect_to @investigation, 
+                      notice: 'Investigation was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @investigation.errors, status: :unprocessable_entity }
+        format.json { render json: @investigation.errors,
+                      status: :unprocessable_entity }
       end
     end
   end
