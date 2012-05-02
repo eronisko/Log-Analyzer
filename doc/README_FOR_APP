@@ -1,2 +1,57 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+= User Guide
+This page describes how to install and use the Log Analyzer artefact, a part
+of the BSc thesis <em>A Log Analysis Solution for Heterogeneous Systems</em> by
+{Ernest Walzel}[mailto:ernest.walzel@study.beds.ac.uk]
+
+== Setting up the Application
+=== Installing Ruby on Rails
+This artefact has been tested on Ruby 1.9.3 and Rails 3.2
+
+Please follow the instructions at
+http://ruby.railstutorial.org/ruby-on-rails-tutorial-book#sec:rubygems to
+install +Ruby+, +RubyGems+, +Rails+ and +Git+ onto your computer.
+
+=== Obtaining Source Code
+The source code for this application can be found in the CD attached to the
+hard copy of the thesis in the _Artefact/Log-Analyzer/_ directory.
+
+Alternatively, it can be cloned from the GitHub repository:
+  git clone git@github.com:eronisko/Log-Analyzer.git
+
+=== Preparing the Database
+To use the application, the back-end database must be set up using database
+_migrations_.
+
+Go into the _Log-Analyzer_ directory
+  cd Log-Analyzer
+Migrate the database
+  rake db:migrate
+Populate the database with exemplary data
+  rake db:seed
+
+=== Starting up the Server
+Finally, the server can be started by executing
+  rails s
+The application can be accessed via http://localhost:3000
+
+== Using the Application
+The application can be controlled via the web interface using the provided
+links. The definitions below outline what each of the sections control:
+
+[Investigations]
+	Hold all the individual log files for a particular case.
+[Ignore Lists]
+	Blacklists the set what RegEx patterns should be ignored.
+[Source Definitions]
+	Define what fields and message types a log file might contain.
+[Message Patterns]
+	Describe each message 'type', its category and field it contains.
+
+=== Applying Source Definitions / Ignore Lists
+1. Find the Investigation and Log, then click on 'Show'
+2. Choose from the drop-down menu which Ignore list or Source you would like to apply.
+
+The charts for the visualisation stage are populated automatically.
+
+
+
